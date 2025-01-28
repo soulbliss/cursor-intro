@@ -30,5 +30,6 @@ credit: [@khaledmhirsi](https://x.com/khaledmhirsi/status/1866440695629619668)
 
 ---
 to be included
-[more tips](https://dev.to/heymarkkop/cursor-tips-10f8)
-+ how to maintain chnagelog and readme/documentation
+- [tips](https://dev.to/heymarkkop/cursor-tips-10f8)
+- [more tips](https://forum.cursor.com/t/tips-for-agent-its-very-powerful/33111)
+- how to maintain changelog and readme/documentation
