@@ -28,7 +28,7 @@ credit: [@khaledmhirsi](https://x.com/khaledmhirsi/status/1866440695629619668)
 - **[Forum](https://forum.cursor.com/)**
 
 
-
+---
 to be included
- [more tips](https://dev.to/heymarkkop/cursor-tips-10f8)
+[more tips](https://dev.to/heymarkkop/cursor-tips-10f8)
 + how to maintain chnagelog and readme/documentation
