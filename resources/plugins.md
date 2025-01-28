@@ -1,0 +1,1 @@
+- **[specstory](https://specstory.com/)** - extension that allows you to easily save your history to a markdown file that you can locally version and render + share with others if you’d like.
