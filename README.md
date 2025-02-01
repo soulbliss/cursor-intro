@@ -7,6 +7,7 @@
 - **[Leveraging .cursorrules](https://www.reddit.com/r/cursor/comments/1hwwo60/top_crowdsourced_wisdom_for_effectively/)**
 - **[Setup for Large projects](guidance/largeProjects.md)**
 - **[.cursorrules alternative](guidance/cursorRulesAlternative.md)**
+- **[Notetaking with Cursor](https://x.com/0xRaduan/status/1882446742005907769)**
 
 ### Prompts
 - **[Enhance Cursor's Coding by Encouraging Questions ](prompts\askQuestions.md)**
