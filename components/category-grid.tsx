@@ -89,12 +89,13 @@ export function CategoryGrid({ tips, categories, searchQuery, filters }: Categor
                             <>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {displayTips.map((tip: Tip) => (
-                                        <Link
-                                            key={tip._meta.path}
-                                            href={`/${tip._meta.path}`}
-                                            className="block hover:bg-accent rounded-lg border bg-card text-card-foreground shadow-sm transition-colors"
-                                        >
-                                            <div className="p-6 space-y-4">
+                                        <div key={tip._meta.path} className="relative group">
+                                            <Link
+                                                href={`/${tip._meta.path}`}
+                                                className="absolute inset-0 z-10"
+                                                aria-label={tip.title}
+                                            />
+                                            <div className="p-6 space-y-4 rounded-lg border bg-card text-card-foreground shadow-sm transition-colors group-hover:bg-accent group-active:bg-accent/80">
                                                 {tip.media.screenshots?.[0] && !tip.media.video && (
                                                     <div className="relative md:h-72 h-48 w-full overflow-hidden rounded-md">
                                                         <Image
@@ -161,7 +162,7 @@ export function CategoryGrid({ tips, categories, searchQuery, filters }: Categor
                                                     </div>
                                                 </div>
                                             </div>
-                                        </Link>
+                                        </div>
                                     ))}
                                 </div>
                                 {searchQuery && categoryTips.length > 3 && (
