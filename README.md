@@ -1,6 +1,8 @@
 # Cursor Intro Tips
 
+![Cursor Intro](./cursor-intro.webp)
 A collection of tips, tricks, and best practices for using Cursor - the world's best AI-powered IDE.
+Read our [Contributing Guidelines](CONTRIBUTING.md).
 
 ## Overview
 
@@ -15,33 +17,15 @@ This repository contains a curated collection of tips demonstrating various feat
 - 🏷️ Categorized content
 - 📊 Difficulty levels for all user types
 
-## Tech Stack
+## Contributing
 
-This project is built with modern web technologies:
+We welcome contributions from the community! If you have a tip to share:
 
-### Core
-- ⚡ [Next.js](https://nextjs.org/) - React framework for production
-- 🔷 [TypeScript](https://www.typescriptlang.org/) - Static type checking
-- 🎨 [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+1. Read our [Contributing Guidelines](CONTRIBUTING.md)
+2. Fork the repository
+3. Create your tip following the template
+4. Submit a Pull Request
 
-### UI Components
-- 🎭 [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible components
-- 🔧 [clsx](https://github.com/lukeed/clsx) & [tailwind-merge](https://github.com/dcastil/tailwind-merge) - Utility styling tools
-- 🌙 [next-themes](https://github.com/pacocoursey/next-themes) - Theme management
-
-### Content Management
-- 📚 [Content Collections](https://github.com/content-collections/content-collections) - Markdown content handling
-- 🐦 [react-tweet](https://github.com/vercel/react-tweet) - Twitter embed integration
-
-### Database & Authentication
-- 💧 [Drizzle ORM](https://orm.drizzle.team/) - TypeScript ORM
-- 🔐 [NextAuth.js](https://next-auth.js.org/) - Authentication
-- 🐘 [PostgreSQL](https://www.postgresql.org/) - Database
-
-### Development Tools
-- 📝 [ESLint](https://eslint.org/) - Code linting
-- 🎨 [Prettier](https://prettier.io/) - Code formatting
-- 🐶 [Husky](https://typicode.github.io/husky/) - Git hooks
 
 ## Getting Started
 
@@ -61,17 +45,8 @@ npm install
 npm run dev
 ```
 
-## Contributing
-
-We welcome contributions from the community! If you have a tip to share:
-
-1. Read our [Contributing Guidelines](CONTRIBUTING.md)
-2. Fork the repository
-3. Create your tip following the template
-4. Submit a Pull Request
 
 ## Categories
 
 Tips are organized into various categories to help users find relevant content. Check the `/config/categories.json` file for the complete list of categories.
-
 

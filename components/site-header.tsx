@@ -1,9 +1,7 @@
-
 import { MainNav } from '@/components/main-nav';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { siteConfig } from '@/config/site';
+import { Button } from '@/components/ui/button';
 import { getCurrentUser } from '@/lib/session';
-import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 export async function SiteHeader() {
@@ -36,7 +34,16 @@ export async function SiteHeader() {
               />
             )} */}
           </nav>
-          {siteConfig.mainNav?.length ? (
+          <Link
+            href="https://github.com/soulbliss/cursor-intro"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Button variant="outline" className="ml-2">
+              Contribute a Demo
+            </Button>
+          </Link>
+          {/* {siteConfig.mainNav?.length ? (
             <nav className="hidden gap-6 sm:flex">
               {siteConfig.mainNav?.map(
                 (item, index) =>
@@ -52,7 +59,7 @@ export async function SiteHeader() {
                   ),
               )}
             </nav>
-          ) : null}
+          ) : null} */}
         </div>
       </div>
     </header>

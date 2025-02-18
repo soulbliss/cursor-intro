@@ -2,41 +2,97 @@
 
 import { CategoryGrid } from "@/components/category-grid";
 import { SearchBar } from "@/components/search-bar";
+import { FilterState, SidebarFilter } from "@/components/sidebar-filter";
 import categories from "@/config/categories.json";
 import { allTips } from "content-collections";
 import { useState } from "react";
 
+interface Category {
+  id: string;
+  title: string;
+}
+
+const difficulties = [
+  { id: 'beginner', label: 'Beginner' },
+  { id: 'intermediate', label: 'Intermediate' },
+  { id: 'advanced', label: 'Advanced' },
+];
+
+const tags = [
+  { id: 'agent', label: 'Agent' },
+  { id: 'codebase', label: 'Codebase' },
+  { id: 'mcp', label: 'MCP' },
+  { id: 'servers', label: 'Servers' },
+];
+
+// Convert category strings to Category objects
+const categoryObjects: Category[] = categories.map(cat => ({
+  id: cat,
+  title: cat.replace(/_/g, ' ').split(' ').map(word =>
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ')
+}));
+
 export default function IndexPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [filters, setFilters] = useState<FilterState>({
+    categories: [],
+    difficulty: [],
+    tags: [],
+  });
+
+  const categoryOptions = categoryObjects.map(cat => ({
+    id: cat.id,
+    label: cat.title,
+    count: allTips.filter(tip => tip.categories.includes(cat.id)).length,
+  }));
 
   return (
-    <>
-      <section className="space-y-8 pb-12 pt-8 md:pb-16 md:pt-12 lg:py-16">
-        <div className="container flex max-w-6xl flex-col items-center gap-8 text-center">
-          <h1 className="font-sans text-3xl font-bold tracking-tighter sm:text-5xl md:text-3xl lg:text-4xl">
-            Cursor Tips & Tricks
-          </h1>
-          <div className="container mx-auto w-full max-w-3xl px-4">
-            <SearchBar
-              value={searchQuery}
-              onChange={setSearchQuery}
-              onClear={() => setSearchQuery("")}
-            />
-          </div>
-
-          <p className="max-w-2xl font-display leading-normal text-sm text-muted-foreground sm:text-lg sm:leading-8">
-            Quick video tutorials and screenshots to help you master Cursor. Short and focused tips to get you started.
-          </p>
-
-        </div>
-      </section>
-
-
-      <CategoryGrid
-        tips={allTips}
-        categories={categories}
-        searchQuery={searchQuery}
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      {/* Grid Background */}
+      <div
+        className="fixed inset-0 z-0"
+        style={{
+          backgroundImage: `linear-gradient(to right, rgb(var(--foreground) / 0.02) 1px, transparent 1px),
+                           linear-gradient(to bottom, rgb(var(--foreground) / 0.02) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }}
       />
-    </>
+
+      <SidebarFilter
+        categories={categoryOptions}
+        difficulties={difficulties}
+        tags={tags}
+        selectedFilters={filters}
+        onFilterChange={setFilters}
+      />
+
+      <main className="flex-1">
+        <section className="space-y-6 py-8 md:py-12">
+          <div className="container flex max-w-[980px] flex-col items-center gap-4 text-center px-4">
+            <h1 className="font-sans text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Cursor Tips & Tricks
+            </h1>
+            <div className="w-full max-w-[750px]">
+              <SearchBar
+                value={searchQuery}
+                onChange={setSearchQuery}
+                onClear={() => setSearchQuery("")}
+              />
+            </div>
+            <p className="max-w-[700px] text-muted-foreground sm:text-lg">
+              Quick video tutorials and screenshots to help you master Cursor. Short and focused tips to get you started.
+            </p>
+          </div>
+        </section>
+
+        <CategoryGrid
+          tips={allTips}
+          categories={categoryObjects}
+          searchQuery={searchQuery}
+          filters={filters}
+        />
+      </main>
+    </div>
   );
 }

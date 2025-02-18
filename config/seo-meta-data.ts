@@ -10,6 +10,9 @@ export const seoMetaData: Metadata = {
   },
   description: siteConfig.description,
   manifest: 'site.webmanifest',
+  alternates: {
+    canonical: siteConfig.url,
+  },
   keywords: [],
   authors: [
     {

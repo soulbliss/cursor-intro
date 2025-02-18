@@ -8,24 +8,9 @@ export function Analytics() {
   return (
     <>
       <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_MEASUREMENT_ID}`}
-      />
-
-      <Script id="" strategy="lazyOnload">
-        {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_MEASUREMENT_ID}', {
-              page_path: window.location.pathname,
-              });
-          `}
-      </Script>
-      <Script
         defer
-        data-domain="next-js-14-starter-template.vercel.app"
-        src={process.env.NEXT_PUBLIC_PLAUSIBLE}></Script>
+        data-domain="cursorintro.com"
+        src="https://analytics.deeps.dev/js/script.js"></Script>
     </>
   );
 }

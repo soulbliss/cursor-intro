@@ -1,4 +1,5 @@
 import { Tip } from ".content-collections/generated";
+import { FilterState } from "@/components/sidebar-filter";
 import { getEmbedUrl, isVideoUrl } from "@/utils/video";
 import dayjs from "dayjs";
 import { Clock, Gauge, Plus, Sparkles } from "lucide-react";
@@ -8,34 +9,48 @@ import { TweetMediaWrapper } from "./tweet-media";
 
 interface CategoryGridProps {
     tips: Tip[];
-    categories: string[];
-    searchQuery?: string;
+    categories: Array<{ id: string; title: string }>;
+    searchQuery: string;
+    filters: FilterState;
 }
 
-export function CategoryGrid({ tips, categories, searchQuery = "" }: CategoryGridProps) {
-    // Filter tips based on search query
-    const filteredTips = searchQuery
-        ? tips.filter(
-            (tip) =>
-                tip.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                tip.summary.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-        : tips;
+export function CategoryGrid({ tips, categories, searchQuery, filters }: CategoryGridProps) {
+    const filteredTips = tips.filter(tip => {
+        // Search query filter
+        if (searchQuery && !tip.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+            return false;
+        }
 
-    // Get categories that have matching tips
-    const categoriesWithTips = [...categories].filter(category => {
-        const categoryTips = filteredTips.filter((tip: Tip) => tip.categories.includes(category));
-        return searchQuery ? categoryTips.length > 0 : true;
+        // Category filter
+        if (filters.categories.length > 0 && !filters.categories.some(cat => tip.categories.includes(cat))) {
+            return false;
+        }
+
+        // Difficulty filter
+        if (filters.difficulty.length > 0 && !filters.difficulty.includes(tip.difficulty)) {
+            return false;
+        }
+
+        // Tags filter
+        if (filters.tags.length > 0 && !filters.tags.some(tag => tip.categories.includes(tag))) {
+            return false;
+        }
+
+        return true;
     });
 
+    const filteredCategories = categories.filter(category =>
+        filteredTips.some(tip => tip.categories.includes(category.id))
+    );
+
     // Sort categories by number of filtered tips
-    const sortedCategories = categoriesWithTips.sort((a: string, b: string) => {
-        const aTips = filteredTips.filter((tip: Tip) => tip.categories.includes(a)).length;
-        const bTips = filteredTips.filter((tip: Tip) => tip.categories.includes(b)).length;
+    const sortedCategories = filteredCategories.sort((a: { id: string; title: string }, b: { id: string; title: string }) => {
+        const aTips = filteredTips.filter((tip: Tip) => tip.categories.includes(a.id)).length;
+        const bTips = filteredTips.filter((tip: Tip) => tip.categories.includes(b.id)).length;
 
         // If both categories have tips or both don't have tips, sort alphabetically
         if ((aTips > 0 && bTips > 0) || (aTips === 0 && bTips === 0)) {
-            return a.localeCompare(b);
+            return a.title.localeCompare(b.title);
         }
 
         // Put categories with tips first
@@ -59,24 +74,24 @@ export function CategoryGrid({ tips, categories, searchQuery = "" }: CategoryGri
 
     return (
         <div className="container mx-auto py-12 space-y-12 max-w-7xl">
-            {sortedCategories.map((category: string) => {
+            {sortedCategories.map((category) => {
                 const categoryTips = filteredTips.filter((tip: Tip) =>
-                    tip.categories.includes(category)
+                    tip.categories.includes(category.id)
                 );
 
                 // Show all tips if no search query, otherwise limit to 3
                 const displayTips = searchQuery ? categoryTips.slice(0, 3) : categoryTips;
 
                 return (
-                    <section key={category}>
-                        <h2 className="text-3xl font-bold capitalize mb-6">{category.replace(/_/g, " ")}</h2>
+                    <section key={category.id}>
+                        <h2 className="text-3xl font-bold capitalize mb-6">{category.title.replace(/_/g, " ")}</h2>
                         {displayTips.length > 0 ? (
                             <>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {displayTips.map((tip: Tip) => (
                                         <Link
-                                            href={`/${tip._meta.path}`}
                                             key={tip._meta.path}
+                                            href={`/${tip._meta.path}`}
                                             className="block hover:bg-accent rounded-lg border bg-card text-card-foreground shadow-sm transition-colors"
                                         >
                                             <div className="p-6 space-y-4">
@@ -151,7 +166,7 @@ export function CategoryGrid({ tips, categories, searchQuery = "" }: CategoryGri
                                 </div>
                                 {searchQuery && categoryTips.length > 3 && (
                                     <Link
-                                        href={`/?category=${category}`}
+                                        href={`/?category=${category.id}`}
                                         className="text-sm text-primary hover:underline block mt-4"
                                     >
                                         View all {categoryTips.length} tips →

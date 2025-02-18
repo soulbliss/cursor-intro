@@ -20,6 +20,10 @@ const envSchema = z.object({
     .string()
     .min(1, 'PG_DB_CONNECTION_STRING is required'),
 
+  GOOGLE_CLIENT_ID: z.string().min(1, 'GOOGLE_CLIENT_ID is required'),
+  GOOGLE_CLIENT_SECRET: z.string().min(1, 'GOOGLE_CLIENT_SECRET is required'),
+
+
 
 });
 
@@ -37,4 +41,6 @@ export const {
   PG_DB_IDLE_TIMEOUT,
   PG_DB_CONNECTION_TIMEOUT,
   PG_DB_CONNECTION_STRING,
+  GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET,
 } = env.data;
