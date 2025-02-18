@@ -3,11 +3,9 @@ import {
   LucideProps,
   Moon,
   SunMedium,
-  Twitter,
-  type Icon as LucideIcon,
+  Twitter
 } from 'lucide-react';
 
-export type Icon = LucideIcon;
 type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
