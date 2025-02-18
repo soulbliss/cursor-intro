@@ -8,7 +8,7 @@ author:
 feature: "Notion MCP server"
 difficulty: "intermediate"
 media:
-  video: "https://www.youtube.com/watch?v=ocMOZpuAMw4&ab_channel=TechWithTim"
+  video: "https://cdn.diligenceai.dev/assets/cursor_notion.mp4"
 categories: ["mcp_servers"]
 ---
 
