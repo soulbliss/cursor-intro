@@ -73,7 +73,7 @@ export function CategoryGrid({ tips, categories, searchQuery, filters }: Categor
     }
 
     return (
-        <div className="container mx-auto py-12 space-y-12 max-w-7xl">
+        <div className="container mx-auto pb-12 space-y-12 max-w-7xl">
             {sortedCategories.map((category) => {
                 const categoryTips = filteredTips.filter((tip: Tip) =>
                     tip.categories.includes(category.id)
