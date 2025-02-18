@@ -3,7 +3,7 @@
 Thank you for your interest in contributing to Cursor Tips! This guide will help you understand how to contribute new tips to our collection.
 
 Tips should be:
-- Short < 1 minute demonstrations prefferably
+- Short < 1 minute demonstrations
 - Focused on one specific Cursor feature (e.g., Agent Chat, MCP Integration, Code Completion)
 - Clear and practical examples of real-world usage
 - Easily reproducible by others
@@ -54,7 +54,7 @@ Show concrete examples of how to use the feature, including:
 
 1. **Video**
    - YouTube videos should be high quality and focused
-   - Keep videos under 2 minutes when possible
+   - Keep videos between 15-45 seconds in length
    - Include captions or text overlays for clarity
 
 2. **Screenshots**

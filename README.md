@@ -15,6 +15,34 @@ This repository contains a curated collection of tips demonstrating various feat
 - 🏷️ Categorized content
 - 📊 Difficulty levels for all user types
 
+## Tech Stack
+
+This project is built with modern web technologies:
+
+### Core
+- ⚡ [Next.js](https://nextjs.org/) - React framework for production
+- 🔷 [TypeScript](https://www.typescriptlang.org/) - Static type checking
+- 🎨 [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+
+### UI Components
+- 🎭 [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible components
+- 🔧 [clsx](https://github.com/lukeed/clsx) & [tailwind-merge](https://github.com/dcastil/tailwind-merge) - Utility styling tools
+- 🌙 [next-themes](https://github.com/pacocoursey/next-themes) - Theme management
+
+### Content Management
+- 📚 [Content Collections](https://github.com/content-collections/content-collections) - Markdown content handling
+- 🐦 [react-tweet](https://github.com/vercel/react-tweet) - Twitter embed integration
+
+### Database & Authentication
+- 💧 [Drizzle ORM](https://orm.drizzle.team/) - TypeScript ORM
+- 🔐 [NextAuth.js](https://next-auth.js.org/) - Authentication
+- 🐘 [PostgreSQL](https://www.postgresql.org/) - Database
+
+### Development Tools
+- 📝 [ESLint](https://eslint.org/) - Code linting
+- 🎨 [Prettier](https://prettier.io/) - Code formatting
+- 🐶 [Husky](https://typicode.github.io/husky/) - Git hooks
+
 ## Getting Started
 
 1. Clone the repository
