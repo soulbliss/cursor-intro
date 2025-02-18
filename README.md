@@ -1,80 +1,49 @@
-# Free Next JS 14 boilerplate for indiehackers!
+# Cursor Intro Tips
 
-![cover](https://raw.githubusercontent.com/soulbliss/next-js-14-starter-template/main/public/cover.png)
+A collection of tips, tricks, and best practices for using Cursor - the world's best AI-powered IDE.
 
-- Modified from [shadcn-ui](https://github.com/shadcn-ui)/[taxonomy](https://github.com/shadcn-ui/taxonomy) project. Do check it out. Modified it for my daily purpose ✅
+## Overview
 
-- A Next.js 14 template for indiehackers, buildinpublic people to building apps quickly ✅
-
-- Uses Postgres as DB, NextAuth 4, Tailwind CSS has support for dark mode ✅
-
-Open to suggestions to make this better for indiehackers to get started with their projects and code fast!
-
-PS: I have a [SaaS newsletter](https://deeps.beehiiv.com/subscribe) worth checking it out! Moving ahead 👇🏼
-
-Contributions, feedback and ideas welcome!
-
-## Motivation
-
-The [shadcn-ui](https://github.com/shadcn-ui)/[taxonomy](https://github.com/shadcn-ui/taxonomy) project has a lot of dependencies that is heavy on dependencies for using blog, has content layer, mdx and so on.
-
-I wanted a bare bones simple scaffolding for building SaaS apps quicker and always use this template to start things from here,
-
-so thought might as well share it with people!
-
-## Usage
-
-```bash
-git clone https://github.com/soulbliss/next-js-14-starter-template.git
-```
+This repository contains a curated collection of tips demonstrating various features and capabilities of Cursor. Each tip includes detailed explanations, examples, and media content to help users make the most of Cursor's features.
 
 ## Features
 
-- Next.js 14 App Directory
-- Node pg support
-- NextAuth 4
-- Radix UI Primitives
-- Tailwind CSS
-- Google fonts
-- Icons from [Lucide](https://lucide.dev)
-- Dark mode with `next-themes`
-- Tailwind CSS class sorting, merging and linting.
+- 📝 Markdown-based tip collection
+- 🎥 Video demonstrations
+- 📸 Screenshots and visual guides
+- 🐦 Twitter integration
+- 🏷️ Categorized content
+- 📊 Difficulty levels for all user types
 
-## Guide for beginners
+## Getting Started
 
-1. For generating quick logos use [Logofa.st](https://logofa.st/) by [Marc Lou](https://twitter.com/marc_louvion) and put the generated logo in `/public` folder.
-2. Use [Favicon Generator](https://realfavicongenerator.net/) for site icon. Download the zip file and put this into the `/public` folder:
-3. Can find nice hero patterns for landing page here on [hero patterns](https://heropatterns.com/)
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/cursor-intro.git
+cd cursor-intro
+```
 
-### Adding login functionality
+2. Install dependencies
+```bash
+npm install
+```
 
-1. Copy `sample.env.local` and create `env.local`. Fill up the postgres database credentials.
+3. Run the development server
+```bash
+npm run dev
+```
 
-2. ```
-   PG_DB_MAX_CONNECTIONS=20
-   PG_DB_IDLE_TIMEOUT=10000
-   PG_DB_CONNECTION_STRING= "postgres://{user}:{password}@{hostname}:{port}/{database-name}?{config}"
+## Contributing
 
-   GOOGLE_CLIENT_ID=
-   GOOGLE_CLIENT_SECRET=
-   ```
+We welcome contributions from the community! If you have a tip to share:
 
-3. You need to connect to a postgres instance
+1. Read our [Contributing Guidelines](CONTRIBUTING.md)
+2. Fork the repository
+3. Create your tip following the template
+4. Submit a Pull Request
 
-4. Copy `sample.env.local` and create `env.local`. Fill up the postgres database credentials.
+## Categories
 
-5. ```
-   PG_DB_MAX_CONNECTIONS=20 
-   PG_DB_IDLE_TIMEOUT=10000 
-   PG_DB_CONNECTION_STRING = "postgres://{user}:{password}@{hostname}:{port}/{database-name}?{config}"
-   ```
+Tips are organized into various categories to help users find relevant content. Check the `/config/categories.json` file for the complete list of categories.
 
-6. Run `npm/pnpm run db:migrate`
 
-7. Run `npm/pnpm i` to install all dependencies
-
-8. Run `npm/pnpm run dev` and you can use login
-
-## License
-
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).

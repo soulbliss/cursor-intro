@@ -32,6 +32,13 @@ export function CategoryGrid({ tips, categories, searchQuery = "" }: CategoryGri
     const sortedCategories = categoriesWithTips.sort((a: string, b: string) => {
         const aTips = filteredTips.filter((tip: Tip) => tip.categories.includes(a)).length;
         const bTips = filteredTips.filter((tip: Tip) => tip.categories.includes(b)).length;
+
+        // If both categories have tips or both don't have tips, sort alphabetically
+        if ((aTips > 0 && bTips > 0) || (aTips === 0 && bTips === 0)) {
+            return a.localeCompare(b);
+        }
+
+        // Put categories with tips first
         return bTips - aTips;
     });
 
@@ -74,7 +81,7 @@ export function CategoryGrid({ tips, categories, searchQuery = "" }: CategoryGri
                                         >
                                             <div className="p-6 space-y-4">
                                                 {tip.media.screenshots?.[0] && !tip.media.video && (
-                                                    <div className="relative h-32 w-full overflow-hidden rounded-md">
+                                                    <div className="relative md:h-72 h-48 w-full overflow-hidden rounded-md">
                                                         <Image
                                                             src={tip.media.screenshots[0].url}
                                                             alt={tip.title}
@@ -84,7 +91,7 @@ export function CategoryGrid({ tips, categories, searchQuery = "" }: CategoryGri
                                                     </div>
                                                 )}
                                                 {tip.media.video && (
-                                                    <div className="relative h-48 w-full overflow-hidden rounded-md">
+                                                    <div className="relative md:h-72 h-48 w-full overflow-hidden rounded-md">
                                                         {isVideoUrl(tip.media.video) ? (
                                                             <iframe
                                                                 src={getEmbedUrl(tip.media.video)}
@@ -104,7 +111,7 @@ export function CategoryGrid({ tips, categories, searchQuery = "" }: CategoryGri
                                                     </div>
                                                 )}
                                                 {tip.media.tweetUrl && !tip.media.screenshots?.[0] && !tip.media.video && (
-                                                    <div className="relative h-fit w-full overflow-hidden rounded-md">
+                                                    <div className="relative md:h-72 h-48 w-full overflow-hidden rounded-md">
                                                         {getTweetId(tip.media.tweetUrl) && (
                                                             <TweetMediaWrapper id={getTweetId(tip.media.tweetUrl)!} />
                                                         )}
