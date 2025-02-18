@@ -1,36 +1,80 @@
-# AWESOME CURSOR LIST
+# Free Next JS 14 boilerplate for indiehackers!
 
-## Guidance & Tips
+![cover](https://raw.githubusercontent.com/soulbliss/next-js-14-starter-template/main/public/cover.png)
 
-- **[Rules for AI from Cursor Team](guidance/rulesFromCursorTeam.md)**
-- **[Using Composer effectively](https://www.reddit.com/r/cursor/comments/1hqcp03/a_few_tips_for_using_composer_effectively/)**
-- **[Leveraging .cursorrules](https://www.reddit.com/r/cursor/comments/1hwwo60/top_crowdsourced_wisdom_for_effectively/)**
-- **[Setup for Large projects](guidance/largeProjects.md)**
-- **[.cursorrules alternative](guidance/cursorRulesAlternative.md)**
-- **[Notetaking with Cursor](https://x.com/0xRaduan/status/1882446742005907769)**
+- Modified from [shadcn-ui](https://github.com/shadcn-ui)/[taxonomy](https://github.com/shadcn-ui/taxonomy) project. Do check it out. Modified it for my daily purpose ✅
 
-### Prompts
-- **[Enhance Cursor's Coding by Encouraging Questions ](prompts\askQuestions.md)**
-- **[Generating Bug-Free Code ](prompts\bugFreeCode)**
+- A Next.js 14 template for indiehackers, buildinpublic people to building apps quickly ✅
 
-### Keyboard Shortcuts
-Refer to the detailed guide on [Keyboard Shortcuts](https://refined.so/blog/cursor-shortcuts-guide) for a comprehensive list of shortcuts to speed up your workflow.
+- Uses Postgres as DB, NextAuth 4, Tailwind CSS has support for dark mode ✅
 
-## Plugins and Extensions
-Learn about enhancing Cursor's functionality with plugins in the [Plugins and Extensions](resources/plugins.md) section.
+Open to suggestions to make this better for indiehackers to get started with their projects and code fast!
 
-## Resources
-- **[Free Cursor Course](https://docs.google.com/document/d/1XKHYIDJ3d9JBCDFZVRnyLuT3JVr1QCgdWec9pHS7N_U/edit?tab=t.0)**
-credit: [@khaledmhirsi](https://x.com/khaledmhirsi/status/1866440695629619668)
-- **[Learn Cursor](https://cursor.directory/learn)**
-- **[Awesome .cursorrules](https://github.com/PatrickJS/awesome-cursorrules)** 
-- **[Cursor IDE Team and other people posting good cursor tips & tutorials](https://x.com/i/lists/1820427129814708445)**
-- **[cursor-deepseek](https://github.com/danilofalcao/cursor-deepseek)**
-- **[Forum](https://forum.cursor.com/)**
+PS: I have a [SaaS newsletter](https://deeps.beehiiv.com/subscribe) worth checking it out! Moving ahead 👇🏼
 
+Contributions, feedback and ideas welcome!
 
----
-to be included
-- [tips](https://dev.to/heymarkkop/cursor-tips-10f8)
-- [more tips](https://forum.cursor.com/t/tips-for-agent-its-very-powerful/33111)
-- how to maintain changelog and readme/documentation
+## Motivation
+
+The [shadcn-ui](https://github.com/shadcn-ui)/[taxonomy](https://github.com/shadcn-ui/taxonomy) project has a lot of dependencies that is heavy on dependencies for using blog, has content layer, mdx and so on.
+
+I wanted a bare bones simple scaffolding for building SaaS apps quicker and always use this template to start things from here,
+
+so thought might as well share it with people!
+
+## Usage
+
+```bash
+git clone https://github.com/soulbliss/next-js-14-starter-template.git
+```
+
+## Features
+
+- Next.js 14 App Directory
+- Node pg support
+- NextAuth 4
+- Radix UI Primitives
+- Tailwind CSS
+- Google fonts
+- Icons from [Lucide](https://lucide.dev)
+- Dark mode with `next-themes`
+- Tailwind CSS class sorting, merging and linting.
+
+## Guide for beginners
+
+1. For generating quick logos use [Logofa.st](https://logofa.st/) by [Marc Lou](https://twitter.com/marc_louvion) and put the generated logo in `/public` folder.
+2. Use [Favicon Generator](https://realfavicongenerator.net/) for site icon. Download the zip file and put this into the `/public` folder:
+3. Can find nice hero patterns for landing page here on [hero patterns](https://heropatterns.com/)
+
+### Adding login functionality
+
+1. Copy `sample.env.local` and create `env.local`. Fill up the postgres database credentials.
+
+2. ```
+   PG_DB_MAX_CONNECTIONS=20
+   PG_DB_IDLE_TIMEOUT=10000
+   PG_DB_CONNECTION_STRING= "postgres://{user}:{password}@{hostname}:{port}/{database-name}?{config}"
+
+   GOOGLE_CLIENT_ID=
+   GOOGLE_CLIENT_SECRET=
+   ```
+
+3. You need to connect to a postgres instance
+
+4. Copy `sample.env.local` and create `env.local`. Fill up the postgres database credentials.
+
+5. ```
+   PG_DB_MAX_CONNECTIONS=20 
+   PG_DB_IDLE_TIMEOUT=10000 
+   PG_DB_CONNECTION_STRING = "postgres://{user}:{password}@{hostname}:{port}/{database-name}?{config}"
+   ```
+
+6. Run `npm/pnpm run db:migrate`
+
+7. Run `npm/pnpm i` to install all dependencies
+
+8. Run `npm/pnpm run dev` and you can use login
+
+## License
+
+Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
