@@ -97,7 +97,7 @@ export default async function InsightsPage({
                                 </div>
                             </SheetContent>
                         </Sheet>
-                        <h1 className="text-3xl font-bold">Insights</h1>
+                        <h1 className="text-3xl font-bold">Cursor Insights</h1>
                     </div>
                     <div className="w-full sm:w-auto">
                         <InsightsSearch />

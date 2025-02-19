@@ -41,7 +41,7 @@ export async function SiteHeader() {
           >
             <Button variant="default" className="ml-2">
               <Sparkles className="w-4 h-4 mr-2" />
-              Insights
+              70+ Insights
             </Button>
           </Link>
           <Link

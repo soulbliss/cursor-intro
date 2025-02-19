@@ -332,7 +332,7 @@ export default async function InsightPage({ params }: Props) {
 
                     {/* What Not To Do */}
                     <Card className="p-6">
-                        <h2 className="text-2xl font-semibold mb-6">What Not To Do</h2>
+                        <h2 className="text-2xl font-semibold mb-6">Common Mistakes to Avoid</h2>
                         <div className="space-y-4">
                             {insight.what_not_to_do.map((practice, index) => (
                                 <div key={index} className="border rounded-lg p-4 bg-rose-50/50 dark:bg-rose-950/20 hover:bg-rose-100/50 dark:hover:bg-rose-900/20 transition-colors">
