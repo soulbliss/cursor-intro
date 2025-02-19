@@ -54,7 +54,7 @@ export default function IndexPage() {
     <div className="flex flex-col lg:flex-row min-h-screen">
       {/* Grid Background */}
       <div
-        className="fixed inset-0 z-0"
+        className="fixed inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage: `linear-gradient(to right, rgb(var(--foreground) / 0.02) 1px, transparent 1px),
                            linear-gradient(to bottom, rgb(var(--foreground) / 0.02) 1px, transparent 1px)`,
