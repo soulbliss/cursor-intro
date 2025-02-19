@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: 'Cursor Intro',
+  name: 'Cursor Intro - Best Cursor Tips and Tricks',
   url: 'https://cursorintro.com',
   ogImage: 'https://cdn.diligenceai.dev/assets/cursor-intro.webp',
   creator: 'Deeps (soulblissX)',
