@@ -1,6 +1,5 @@
 'use client';
 
-import { getInitials } from '@/lib/utils';
 import { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
@@ -32,7 +31,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
               alt={user.name || user.email || ''}
             />
             <AvatarFallback>
-              {getInitials(user.name || user.email)}
+              {user.name?.charAt(0) || user.email?.charAt(0)}
             </AvatarFallback>
           </Avatar>
         </Button>
