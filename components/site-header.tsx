@@ -2,6 +2,7 @@ import { MainNav } from '@/components/main-nav';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
 import { getCurrentUser } from '@/lib/session';
+import { Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 export async function SiteHeader() {
@@ -34,6 +35,15 @@ export async function SiteHeader() {
               />
             )} */}
           </nav>
+          <Link
+            href="/insights"
+            rel="noreferrer"
+          >
+            <Button variant="default" className="ml-2">
+              <Sparkles className="w-4 h-4 mr-2" />
+              Insights
+            </Button>
+          </Link>
           <Link
             href="https://github.com/soulbliss/cursor-intro"
             target="_blank"
