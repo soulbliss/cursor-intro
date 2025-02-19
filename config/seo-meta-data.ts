@@ -5,7 +5,7 @@ import { siteConfig } from './site';
 
 export const seoMetaData: Metadata = {
   title: {
-    default: siteConfig.name,
+    default: siteConfig.name + " - Best Cursor Tips and Tricks",
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
