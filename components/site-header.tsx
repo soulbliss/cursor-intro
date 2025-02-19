@@ -39,9 +39,9 @@ export async function SiteHeader() {
             href="/insights"
             rel="noreferrer"
           >
-            <Button variant="default" className="ml-2">
+            <Button variant="ghost" className="ml-2">
               <Sparkles className="w-4 h-4 mr-2" />
-              70+ Insights
+              Explore 70+ Cursor Insights
             </Button>
           </Link>
           <Link
