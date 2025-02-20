@@ -92,7 +92,7 @@ export default function IndexPage() {
               <Link href="/insights">
                 <Button variant="outline" size="lg" className="font-medium w-full sm:w-auto">
                   <Sparkles className="w-5 h-5 mr-2" />
-                  ExploreCursor Insights
+                  Explore Cursor Insights
                 </Button>
               </Link>
 
