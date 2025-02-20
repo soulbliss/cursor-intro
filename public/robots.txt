@@ -1,0 +1,12 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://cursorintro.com/sitemap.xml
+
+# Prevent crawling of API routes
+Disallow: /api/
+
+# Prevent crawling of auth-related pages
+Disallow: /login/
