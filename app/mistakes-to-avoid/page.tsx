@@ -5,6 +5,9 @@ import { Metadata } from 'next'
 import { MistakesHeader } from './components/header'
 import { MistakesList } from './components/mistakes-list'
 
+// Revalidate every 12 hours
+export const revalidate = 43200; // 12 hours in seconds
+
 export const metadata: Metadata = {
     title: 'Common Mistakes to Avoid | Cursor Intro',
     description: 'Learn from the community\'s experiences about common mistakes to avoid in software development. Curated list of anti-patterns and pitfalls to help you write better code with Cursor AI.',

@@ -10,6 +10,9 @@ import { AlertTriangle, BookMarked, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
+// Revalidate every 12 hours
+export const revalidate = 43200; // 12 hours in seconds
+
 interface Category {
   id: string;
   title: string;
