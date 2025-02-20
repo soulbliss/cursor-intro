@@ -91,7 +91,7 @@ export default async function BestPracticesPage() {
     const bestPractices = await getBestPractices()
 
     return (
-        <div className="container mx-auto py-8 space-y-8">
+        <div className="mx-4 md:mx-12 py-8 space-y-8">
             <BestPracticesHeader />
             <BestPracticesList practices={bestPractices} />
         </div>

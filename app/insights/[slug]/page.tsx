@@ -188,7 +188,7 @@ export default async function InsightPage({ params }: Props) {
     const relatedPosts = await getRelatedPosts(insight)
 
     return (
-        <div className="container mx-auto py-8 space-y-8">
+        <div className="mx-4 md:mx-24 py-8 space-y-8">
             {/* Back Button */}
             <Link href="/insights" className="inline-block">
                 <Button variant="ghost" size="sm" className="gap-2">

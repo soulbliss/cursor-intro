@@ -72,7 +72,7 @@ export default async function InsightsPage({
 
     return (
         <FilterProvider>
-            <div className="container mx-auto py-6 space-y-6">
+            <div className="mx-4 md:mx-24 py-6 space-y-6">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="flex items-center gap-2">
                         <Sheet>

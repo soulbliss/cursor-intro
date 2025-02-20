@@ -96,7 +96,7 @@ export default async function MistakesPage() {
     const mistakes = await getMistakes()
 
     return (
-        <div className="container mx-auto py-8 space-y-8">
+        <div className="mx-4 md:mx-12 py-8 space-y-8">
             <MistakesHeader />
             <MistakesList mistakes={mistakes} />
         </div>
