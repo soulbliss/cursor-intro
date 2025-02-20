@@ -6,7 +6,7 @@ import { FilterState, SidebarFilter } from "@/components/sidebar-filter";
 import { Button } from "@/components/ui/button";
 import categories from "@/config/categories.json";
 import { allTips } from "content-collections";
-import { Sparkles } from "lucide-react";
+import { AlertTriangle, BookMarked, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -88,13 +88,29 @@ export default function IndexPage() {
               Quick video tutorials and screenshots to help you master Cursor. Short and focused tips to get you started.
             </p>
 
-            <div className="flex justify-center mt-6">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
               <Link href="/insights">
-                <Button variant="default" size="lg" className="font-medium">
+                <Button variant="outline" size="lg" className="font-medium w-full sm:w-auto">
                   <Sparkles className="w-5 h-5 mr-2" />
-                  Explore 70+ Cursor Insights
+                  ExploreCursor Insights
                 </Button>
               </Link>
+
+              <div className="flex gap-4">
+                <Link href="/best-practices">
+                  <Button variant="outline" size="lg" className="font-medium w-full sm:w-auto">
+                    <BookMarked className="w-5 h-5 mr-2" />
+                    Best Practices
+                  </Button>
+                </Link>
+
+                <Link href="/mistakes-to-avoid">
+                  <Button variant="outline" size="lg" className="font-medium w-full sm:w-auto">
+                    <AlertTriangle className="w-5 h-5 mr-2" />
+                    Common Mistakes
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </section>

@@ -220,7 +220,7 @@ export default async function InsightPage({ params }: Props) {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        View on Reddit
+                        Curated from Reddit
                     </a>
                 </div>
             </div>
