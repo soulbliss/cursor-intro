@@ -88,24 +88,24 @@ export function HomeContent() {
                             Quick video tutorials and screenshots to help you master Cursor. Short and focused tips to get you started.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
-                            <Link href="/insights">
-                                <Button variant="default" size="lg" className="font-medium w-full sm:w-auto">
+                        <div className="flex flex-col gap-6 w-full max-w-[750px] mt-6">
+                            <Link href="/insights" className="w-full">
+                                <Button variant="outline" size="lg" className="font-medium w-full">
                                     <Sparkles className="w-5 h-5 mr-2" />
                                     Explore 70+ Cursor Insights
                                 </Button>
                             </Link>
 
-                            <div className="flex gap-4">
-                                <Link href="/best-practices">
-                                    <Button variant="outline" size="lg" className="font-medium w-full sm:w-auto">
+                            <div className="flex flex-col sm:flex-row gap-4 w-full">
+                                <Link href="/best-practices" className="w-full sm:w-1/2">
+                                    <Button variant="outline" size="lg" className="font-medium w-full">
                                         <BookMarked className="w-5 h-5 mr-2" />
                                         Best Practices
                                     </Button>
                                 </Link>
 
-                                <Link href="/mistakes-to-avoid">
-                                    <Button variant="outline" size="lg" className="font-medium w-full sm:w-auto">
+                                <Link href="/mistakes-to-avoid" className="w-full sm:w-1/2">
+                                    <Button variant="outline" size="lg" className="font-medium w-full">
                                         <AlertTriangle className="w-5 h-5 mr-2" />
                                         Common Mistakes
                                     </Button>
