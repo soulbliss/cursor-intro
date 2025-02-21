@@ -79,8 +79,8 @@ export function CategoryGrid({ tips, categories, searchQuery, filters }: Categor
                     tip.categories.includes(category.id)
                 );
 
-                // Show all tips if no search query, otherwise limit to 3
-                const displayTips = searchQuery ? categoryTips.slice(0, 3) : categoryTips;
+                // Show all tips if no search query, otherwise limit to 5
+                const displayTips = searchQuery ? categoryTips.slice(0, 9) : categoryTips;
 
                 return (
                     <section key={category.id}>
