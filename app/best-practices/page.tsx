@@ -10,13 +10,13 @@ export const revalidate = 43200; // 12 hours in seconds
 
 // Static metadata for the best practices page
 export const metadata: Metadata = {
-    title: 'Best Practices | Cursor Intro',
+    title: 'Best Practices | Cursor Intro - Best Cursor Tips & Tricks',
     description: 'A curated collection of software development best practices from the community, sorted by impact and popularity. Learn from real-world experiences and improve your cursor AI editor usage.',
     openGraph: {
-        title: 'Best Practices | Cursor Intro',
+        title: 'Best Practices | Cursor Intro - Best Cursor Tips & Tricks',
         description: 'A curated collection of software development best practices from the community, sorted by impact and popularity.',
         type: 'website',
-        siteName: 'Cursor Intro',
+        siteName: 'Cursor Intro - Best Cursor Tips & Tricks',
         images: [
             {
                 url: 'https://cdn.diligenceai.dev/assets/cursor-intro.webp',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Best Practices | Cursor Insights',
+        title: 'Best Practices | Cursor Insights - Best Cursor Tips & Tricks',
         description: 'A curated collection of software development best practices from the community.',
     },
     alternates: {

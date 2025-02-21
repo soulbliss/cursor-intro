@@ -9,13 +9,13 @@ import { MistakesList } from './components/mistakes-list'
 export const revalidate = 43200; // 12 hours in seconds
 
 export const metadata: Metadata = {
-    title: 'Common Mistakes to Avoid | Cursor Intro',
+    title: 'Common Mistakes to Avoid | Cursor Intro - Best Cursor Tips & Tricks',
     description: 'Learn from the community\'s experiences about common mistakes to avoid in software development. Curated list of anti-patterns and pitfalls to help you write better code with Cursor AI.',
     openGraph: {
-        title: 'Common Mistakes to Avoid | Cursor Intro',
+        title: 'Common Mistakes to Avoid | Cursor Intro - Best Cursor Tips & Tricks',
         description: 'Learn from the community\'s experiences about common mistakes to avoid in software development.',
         type: 'website',
-        siteName: 'Cursor Intro',
+        siteName: 'Cursor Intro - Best Cursor Tips & Tricks',
         images: [
             {
                 url: 'https://cdn.diligenceai.dev/assets/cursor-intro.webp',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Common Mistakes to Avoid | Cursor Intro',
+        title: 'Common Mistakes to Avoid | Cursor Intro - Best Cursor Tips & Tricks',
         description: 'Learn from the community\'s experiences about common mistakes to avoid in software development.',
     },
     alternates: {

@@ -9,7 +9,7 @@ import { fontDisplay, fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'Cursor Intro',
+  title: 'Cursor Intro - Best Cursor Tips & Tricks',
   description: 'Learn to use Cursor AI effectively with tips, best practices, and common mistakes to avoid.',
 };
 
