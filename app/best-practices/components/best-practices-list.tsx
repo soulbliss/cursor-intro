@@ -222,7 +222,7 @@ export function BestPracticesList({ practices }: Props) {
                                         href={`/insights/${encodeURIComponent(practice.postTitle.split(' ').join('-'))}`}
                                         className="font-display text-sm font-medium text-foreground/70 hover:text-primary underline"
                                     >
-                                        From post: {practice.postTitle}
+                                        More insights: {practice.postTitle}
                                     </Link>
                                     <div className="flex items-center gap-2 mt-1 font-sans text-xs text-muted-foreground">
                                         <span>{formatDistanceToNow(practice.createdAt, { addSuffix: true })}</span>

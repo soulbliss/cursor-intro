@@ -262,7 +262,7 @@ export function MistakesList({ mistakes }: Props) {
                                         href={`/insights/${encodeURIComponent(mistake.postTitle.split(' ').join('-'))}`}
                                         className="font-display text-sm font-medium text-foreground/70 hover:text-primary underline"
                                     >
-                                        From post: {mistake.postTitle}
+                                        More insights: {mistake.postTitle}
                                     </Link>
                                     <div className="flex items-center gap-2 mt-1 font-sans text-xs text-muted-foreground">
                                         <span>{formatDistanceToNow(mistake.createdAt, { addSuffix: true })}</span>
