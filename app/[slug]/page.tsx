@@ -33,16 +33,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             type: "article",
             publishedTime: new Date(tip.date).toISOString(),
             authors: [tip.author.name],
-            images: tip.media.screenshots?.map(s => ({
-                url: s.url,
-                alt: s.caption || tip.title,
-            })) || [],
+            images: 'https://cdn.diligenceai.dev/assets/cursor-intro.webp',
         },
         twitter: {
             card: "summary_large_image",
             title: tip.title,
             description: tip.summary,
-            images: tip.media.screenshots?.[0]?.url,
+            images: 'https://cdn.diligenceai.dev/assets/cursor-intro.webp',
         },
     };
 }
