@@ -1,7 +1,7 @@
 ---
 title: "Stripe MCP Integration"
 summary: "Learn how Cursor's MCP server can help you debug Stripe issues faster by automatically analyzing Stripe logs and errors"
-date: 2025-03-21
+date: 2025-02-21
 author:
   name: "Stripe Dev" 
   x: "https://x.com/StripeDev"

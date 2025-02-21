@@ -1,7 +1,7 @@
 ---
 title: "Notion MCP server"
 summary: "Learn how to use Cursor's MCP server to connect to and query your Notion workspace directly from the editor"
-date: 2024-03-20
+date: 2025-02-20
 author:
   name: "Deepak Garasangi"
   x: "https://x.com/soulblissX"

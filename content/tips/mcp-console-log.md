@@ -1,7 +1,7 @@
 ---
 title: "Console Log MCP Server"
 summary: "Learn how Cursor's MCP server can read and analyze console logs and errors automatically from your browser for faster debugging"
-date: 2024-03-21
+date: 2025-02-21
 author:
   name: "Mervin Praison" 
   x: "https://x.com/MervinPraison"
