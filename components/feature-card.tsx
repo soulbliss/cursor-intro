@@ -27,10 +27,11 @@ export function FeatureCard({
                 "group relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-md",
                 className
             )}
+            aria-label={`Learn more about ${title}`}
         >
             <div className="flex h-full flex-col p-4">
                 <div className="mb-4 flex items-center gap-2">
-                    <Icon className="h-6 w-6 text-primary" />
+                    <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
                     <h3 className="font-display text-xl font-semibold">{title}</h3>
                 </div>
 
@@ -40,6 +41,9 @@ export function FeatureCard({
                             src={imageSrc}
                             alt={title}
                             fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            loading="lazy"
+                            quality={75}
                             className="object-cover transition-transform group-hover:scale-105"
                         />
                     </div>
@@ -49,4 +53,4 @@ export function FeatureCard({
             </div>
         </Link>
     )
-} 
+}
