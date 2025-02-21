@@ -10,6 +10,7 @@ difficulty: "intermediate"
 media:
   video: "https://cdn.diligenceai.dev/assets/cursor_postgres.mp4"
 categories: ["mcp_servers"]
+tools: ["postgres"]
 ---
 
 The Model Context Protocol (MCP) allows Cursor to connect directly to your data sources. With the Postgres MCP server, you can query and analyze your Postgres database right from within Cursor.

@@ -10,6 +10,7 @@ difficulty: "intermediate"
 media:
   video: "https://cdn.diligenceai.dev/assets/cursor_github.mp4"
 categories: ["mcp_servers"]
+tools: ["github"]
 ---
 
 The Model Context Protocol (MCP) allows Cursor to connect directly to your data sources. With the GitHub MCP server, you can analyze and search through your GitHub repositories right from within Cursor.

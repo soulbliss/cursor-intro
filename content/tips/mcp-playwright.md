@@ -10,6 +10,7 @@ difficulty: "intermediate"
 media:
   video: "https://cdn.diligenceai.dev/assets/cursor_devtools.mp4"
 categories: ["mcp_servers"]
+tools: ["dev_tools", "playwright"]
 ---
 
 The Model Context Protocol (MCP) allows Cursor to connect directly to your data sources. With the Playwright MCP server, you can analyze and debug your Playwright test automation right from within Cursor.

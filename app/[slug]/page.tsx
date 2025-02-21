@@ -1,6 +1,9 @@
 import { TipContent } from "@/components/tip-content";
+import { Button } from "@/components/ui/button";
 import { allTips } from "content-collections";
+import { ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -51,5 +54,17 @@ export default function TipPage({ params }: PageProps) {
         notFound();
     }
 
-    return <TipContent tip={tip} />;
+    return (
+        <div className="container mx-auto px-4 py-8">
+            <div className="mb-8">
+                <Link href="/demos">
+                    <Button variant="ghost" className="gap-2 text-muted-foreground hover:text-foreground">
+                        <ArrowLeft className="h-4 w-4" />
+                        Back to Demos
+                    </Button>
+                </Link>
+            </div>
+            <TipContent tip={tip} />
+        </div>
+    );
 } 

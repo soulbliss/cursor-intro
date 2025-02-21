@@ -32,6 +32,7 @@ const tips = defineCollection({
     // Feature categorization
     feature: z.string(),
     categories: z.array(z.enum(categories as [string, ...string[]])),
+    tools: z.array(z.string()).optional(),
     difficulty: z.enum(["beginner", "intermediate", "advanced"]).default("beginner"),
   }),
   transform: async (document, context) => {

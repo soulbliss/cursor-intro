@@ -10,6 +10,7 @@ difficulty: "intermediate"
 media:
   video: "https://cdn.diligenceai.dev/assets/cursor_notion.mp4"
 categories: ["mcp_servers"]
+tools: ["notion"]
 ---
 
 The Model Context Protocol (MCP) allows Cursor to connect directly to your data sources. With the Notion MCP server, you can query and analyze your Notion workspace right from within Cursor.

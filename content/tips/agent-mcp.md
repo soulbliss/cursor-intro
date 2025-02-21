@@ -9,7 +9,7 @@ feature: "MCP Integration"
 difficulty: "intermediate"
 media:
   tweetUrl: "https://x.com/donvito/status/1889004996714442986"
-categories: ["agent"]
+categories: ["agent", "mcp_servers"]
 ---
 
 Model Context Protocol (MCP) servers enhance Cursor Agent by providing specialized knowledge and capabilities

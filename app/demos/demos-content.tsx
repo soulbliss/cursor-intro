@@ -25,6 +25,7 @@ export function DemosContent() {
         categories: [],
         difficulty: [],
         tags: [],
+        tools: [],
     })
 
     // Create categories based on available tips
@@ -42,6 +43,16 @@ export function DemosContent() {
         count: allTips.filter(tip => tip.categories.includes(cat.id)).length,
     }))
 
+    // Create tools options based on available tips
+    const tools = Array.from(new Set(allTips.flatMap(tip => tip.tools || [])))
+    const toolOptions = tools.map(tool => ({
+        id: tool,
+        label: tool.replace(/_/g, ' ').split(' ').map(word =>
+            word.charAt(0).toUpperCase() + word.slice(1)
+        ).join(' '),
+        count: allTips.filter(tip => tip.tools?.includes(tool)).length,
+    }))
+
     // If no categories are found, create a default category
     const finalCategories = categoryObjects.length > 0 ? categoryObjects : [{
         id: "demos",
@@ -55,6 +66,7 @@ export function DemosContent() {
                     categories={categoryOptions}
                     difficulties={difficulties}
                     tags={tags}
+                    tools={toolOptions}
                     selectedFilters={filters}
                     onFilterChange={setFilters}
                 />
@@ -64,7 +76,6 @@ export function DemosContent() {
                     <h1 className="text-4xl font-bold tracking-tight mb-4">Cursor Demos</h1>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                         Explore a curated collection of demos showcasing Cursor's powerful features.
-
                     </p>
                 </section>
 

@@ -10,6 +10,7 @@ difficulty: "intermediate"
 media:
   tweetUrl: "https://x.com/StripeDev/status/1892685153987592526"
 categories: ["mcp_servers"]
+tools: ["stripe"]
 ---
 
 ## Overview

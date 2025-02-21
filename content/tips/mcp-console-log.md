@@ -10,6 +10,7 @@ difficulty: "intermediate"
 media:
   tweetUrl: "https://x.com/MervinPraison/status/1891411751486247366"
 categories: ["mcp_servers"]
+tools: ["dev_tools"]
 ---
 
 ## Overview

@@ -20,12 +20,14 @@ export type FilterState = {
     categories: string[];
     difficulty: string[];
     tags: string[];
+    tools: string[];
 };
 
 interface SidebarFilterProps {
     categories: FilterOption[];
     difficulties: FilterOption[];
     tags: FilterOption[];
+    tools: FilterOption[];
     selectedFilters: FilterState;
     onFilterChange: (newFilters: FilterState) => void;
 }
@@ -34,6 +36,7 @@ export function SidebarFilter({
     categories,
     difficulties,
     tags,
+    tools,
     selectedFilters,
     onFilterChange,
 }: SidebarFilterProps) {
@@ -94,6 +97,11 @@ export function SidebarFilter({
                 title="Categories"
                 options={categories}
                 section="categories"
+            />
+            <FilterSection
+                title="Tools"
+                options={tools}
+                section="tools"
             />
         </nav>
     );

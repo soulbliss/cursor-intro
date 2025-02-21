@@ -36,6 +36,11 @@ export function CategoryGrid({ tips, categories, searchQuery, filters }: Categor
             return false;
         }
 
+        // Tools filter
+        if (filters.tools.length > 0 && !filters.tools.some(tool => tip.tools?.includes(tool))) {
+            return false;
+        }
+
         return true;
     });
 
