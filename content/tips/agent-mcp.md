@@ -1,7 +1,7 @@
 ---
 title: "Using MCP with Cursor Agent"
 summary: "Learn how to use Model Context Protocol (MCP) servers with Cursor Agent to enhance your development workflow"
-date: 2025-03-21
+date: 2025-02-21
 author:
   name: "Melvin Vivas"
   x: "https://x.com/donvito"
