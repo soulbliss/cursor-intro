@@ -14,7 +14,7 @@ export function SearchBar({ value, onChange, onClear }: SearchBarProps) {
                 <input
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
-                    placeholder="Search tips..."
+                    placeholder="Notion, Jira, Stripe, etc.."
                     className="w-full rounded-md border placeholder:text-muted-foreground placeholder:text-lg border-input bg-background px-10 py-2 text-sm h-12"
                 />
                 {value && (
