@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { AlertTriangle, BookMarked, Home, Sparkles } from "lucide-react"
+import { AlertTriangle, BookMarked, Home, Sparkles, Video } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -26,6 +26,11 @@ export function SiteHeader() {
             href: "/mistakes-to-avoid",
             label: "Common Mistakes",
             icon: AlertTriangle
+        },
+        {
+            href: "/demos",
+            label: "Video Demos",
+            icon: Video
         }
     ]
 

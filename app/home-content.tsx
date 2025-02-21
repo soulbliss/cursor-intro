@@ -26,7 +26,7 @@ export function HomeContent() {
                             Cursor AI tips and tricks
                         </h1>
                         <p className="max-w-[700px] text-muted-foreground sm:text-lg">
-                            Learn to use Cursor effectively with comprehensive guides, best practices, and hands-on demos.
+                            Learn to use Cursor effectively with best practices, common mistakes to avoid, and hands-on demos.
                         </p>
                     </div>
                 </section>
@@ -38,7 +38,7 @@ export function HomeContent() {
                             description="Discover 70+ curated insights from the Cursor community."
                             href="/insights"
                             icon={Sparkles}
-                            imageSrc="/cover.png"
+                            imageSrc="https://cdn.diligenceai.dev/assets/insights.webp"
                             className="lg:col-span-2"
                         />
                         <FeatureCard
@@ -46,7 +46,7 @@ export function HomeContent() {
                             description="Master Cursor with professional tips and techniques for maximum productivity."
                             href="/best-practices"
                             icon={BookMarked}
-                            imageSrc="/cover.png"
+                            imageSrc="https://cdn.diligenceai.dev/assets/best_practices.webp"
                             className="lg:col-span-2"
                         />
                         <FeatureCard
@@ -54,7 +54,7 @@ export function HomeContent() {
                             description="Watch Cursor in action with real-world examples and use cases."
                             href="/demos"
                             icon={Video}
-                            imageSrc="/cover.png"
+                            imageSrc="https://cdn.diligenceai.dev/assets/video_demos.webp"
                             className="md:col-span-2 lg:col-span-2"
                         />
                         <FeatureCard
@@ -62,7 +62,7 @@ export function HomeContent() {
                             description="Save hours by learning what to avoid and how to fix common issues."
                             href="/mistakes-to-avoid"
                             icon={AlertTriangle}
-                            imageSrc="/cover.png"
+                            imageSrc="https://cdn.diligenceai.dev/assets/mistakes_avoid.webp"
                             className="md:col-span-2 lg:col-span-2"
                         />
                     </div>

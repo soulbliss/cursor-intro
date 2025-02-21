@@ -2,8 +2,9 @@
 import { MainNav } from '@/components/main-nav';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
+import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
-import { AlertTriangle, BookMarked, Home, Sparkles } from 'lucide-react';
+import { AlertTriangle, BookMarked, Home, Sparkles, Video } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -30,13 +31,18 @@ export function SiteHeader() {
       href: "/mistakes-to-avoid",
       label: "Common Mistakes",
       icon: AlertTriangle
+    },
+    {
+      href: "/demos",
+      label: "Video Demos",
+      icon: Video
     }
   ];
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
-        <MainNav />
+        <MainNav items={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">

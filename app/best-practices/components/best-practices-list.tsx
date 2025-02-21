@@ -4,8 +4,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { formatDistanceToNow } from 'date-fns'
-import { ChevronLeft, ChevronRight, Info } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Info, SlidersHorizontal } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Filter } from './filter'
@@ -97,7 +98,21 @@ export function BestPracticesList({ practices }: Props) {
                 <div className="space-y-6">
                     {/* Mobile Filter */}
                     <div className="md:hidden">
-                        <Filter practices={practices} onFilterChange={handleFilterChange} />
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button variant="outline" className="w-full sticky top-0 z-10 bg-background">
+                                    <SlidersHorizontal className="mr-2 h-4 w-4" />
+                                    Filters
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side="left" className="w-[300px] p-0">
+                                <div className="h-full py-6 px-6 overflow-y-auto">
+                                    <div className="pb-20">
+                                        <Filter practices={practices} onFilterChange={handleFilterChange} />
+                                    </div>
+                                </div>
+                            </SheetContent>
+                        </Sheet>
                     </div>
 
                     {/* Results count */}
@@ -106,11 +121,11 @@ export function BestPracticesList({ practices }: Props) {
                     </div>
 
                     {currentPractices.map((practice, index) => (
-                        <Card key={`${practice.postId}-${index}`} className="p-6">
-                            <div className="space-y-4">
+                        <Card key={`${practice.postId}-${index}`} className="p-6 border-none bg-muted/40 hover:bg-muted/60 transition-colors">
+                            <div className="space-y-6">
                                 {/* Header */}
                                 <div className="flex items-center justify-between">
-                                    <h3 className="font-semibold text-lg">{practice.title}</h3>
+                                    <h3 className="font-display text-lg font-medium text-foreground/90">{practice.title}</h3>
                                     <Badge
                                         variant="outline"
                                         className={`capitalize px-3 py-1 text-sm font-medium ${practice.impact_level === 'critical'
@@ -125,66 +140,91 @@ export function BestPracticesList({ practices }: Props) {
                                 </div>
 
                                 {/* Description */}
-                                <p className="text-muted-foreground leading-relaxed">
+                                <p className="font-sans text-base text-muted-foreground leading-relaxed">
                                     {practice.description}
                                 </p>
 
                                 {/* Tech Stack & Tags */}
-                                <div className="space-y-3">
+                                <div className="space-y-4">
                                     {/* Languages & Tools */}
                                     {(practice.techStack.languages.length > 0 || practice.techStack.tools.length > 0) && (
-                                        <div className="flex flex-wrap gap-2">
-                                            {practice.techStack.languages.map((lang) => (
-                                                <Badge key={lang} variant="outline" className="bg-purple-50 dark:bg-purple-900/20">
-                                                    {lang}
-                                                </Badge>
-                                            ))}
-                                            {practice.techStack.tools.map((tool) => (
-                                                <Badge key={tool} variant="outline" className="bg-green-50 dark:bg-green-900/20">
-                                                    {tool}
-                                                </Badge>
-                                            ))}
+                                        <div className="space-y-3 bg-muted/30 rounded-lg p-4">
+                                            <div className="font-display text-sm font-medium text-foreground/70">Tech Stack</div>
+                                            <div className="flex flex-wrap gap-6">
+                                                {practice.techStack.languages.length > 0 && (
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="font-sans text-xs font-medium uppercase tracking-wider text-muted-foreground/60">Languages</span>
+                                                        <div className="flex flex-wrap gap-2">
+                                                            {practice.techStack.languages.map((lang) => (
+                                                                <Badge key={lang} variant="outline" className="bg-emerald-50 dark:bg-emerald-900/20">
+                                                                    {lang}
+                                                                </Badge>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                {practice.techStack.tools.length > 0 && (
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="font-sans text-xs font-medium uppercase tracking-wider text-muted-foreground/60">Tools</span>
+                                                        <div className="flex flex-wrap gap-2">
+                                                            {practice.techStack.tools.map((tool) => (
+                                                                <Badge key={tool} variant="outline" className="bg-teal-50 dark:bg-teal-900/20">
+                                                                    {tool}
+                                                                </Badge>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                     )}
 
                                     {/* Tags */}
-                                    <div className="flex flex-wrap gap-2">
-                                        {practice.tags.map((tag) => (
-                                            <Badge key={tag} variant="outline" className="bg-gray-50 dark:bg-gray-900/20">
-                                                {tag}
-                                            </Badge>
-                                        ))}
-                                    </div>
+                                    {practice.tags.length > 0 && (
+                                        <div className="space-y-3 bg-muted/20 rounded-lg p-4">
+                                            <div className="font-display text-sm font-medium text-foreground/70">Related Topics</div>
+                                            <div className="flex items-center gap-3">
+                                                <span className="font-sans text-xs font-medium uppercase tracking-wider text-muted-foreground/60">Tags</span>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {practice.tags.map((tag) => (
+                                                        <Badge key={tag} variant="outline" className="bg-gray-50 dark:bg-gray-900/20">
+                                                            {tag}
+                                                        </Badge>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Source & Context */}
                                 <Accordion type="single" collapsible className="w-full">
                                     <AccordionItem value="source" className="border-none">
-                                        <AccordionTrigger className="text-sm text-muted-foreground hover:no-underline py-0">
+                                        <AccordionTrigger className="font-sans text-sm text-muted-foreground hover:no-underline py-0">
                                             <div className="flex items-center gap-2">
                                                 <Info className="h-4 w-4" />
                                                 View Source & Context
                                             </div>
                                         </AccordionTrigger>
-                                        <AccordionContent className="text-sm text-muted-foreground pt-4">
-                                            <div className="space-y-2">
-                                                <p><strong>Context:</strong> {practice.context}</p>
-                                                <p><strong>Reasoning:</strong> {practice.reasoning}</p>
-                                                <p><strong>Source:</strong> {practice.source}</p>
+                                        <AccordionContent className="pt-4">
+                                            <div className="space-y-3 font-sans text-sm text-muted-foreground bg-muted/20 rounded-lg p-4">
+                                                <p><span className="font-medium text-foreground/70">Context:</span> {practice.context}</p>
+                                                <p><span className="font-medium text-foreground/70">Reasoning:</span> {practice.reasoning}</p>
+                                                <p><span className="font-medium text-foreground/70">Source:</span> {practice.source}</p>
                                             </div>
                                         </AccordionContent>
                                     </AccordionItem>
                                 </Accordion>
 
                                 {/* Post Info */}
-                                <div className="text-sm text-muted-foreground pt-4 border-t">
+                                <div className="pt-4 bg-muted/10 mt-4 rounded-lg p-4">
                                     <Link
                                         href={`/insights/${encodeURIComponent(practice.postTitle.split(' ').join('-'))}`}
-                                        className="hover:text-primary underline"
+                                        className="font-display text-sm font-medium text-foreground/70 hover:text-primary underline"
                                     >
                                         From post: {practice.postTitle}
                                     </Link>
-                                    <div className="flex items-center gap-2 mt-1">
+                                    <div className="flex items-center gap-2 mt-1 font-sans text-xs text-muted-foreground">
                                         <span>{formatDistanceToNow(practice.createdAt, { addSuffix: true })}</span>
                                     </div>
                                 </div>
