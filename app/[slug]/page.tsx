@@ -22,10 +22,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return {
-        title: tip.title,
+        title: tip.title + ' | Cursor Intro - Best Tips & Tricks',
         description: tip.summary,
         alternates: {
-            canonical: `${tip._meta.path}`,
+            canonical: `https://cursorintro.com/${tip._meta.path}`,
         },
         openGraph: {
             title: tip.title,
