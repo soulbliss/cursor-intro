@@ -117,15 +117,17 @@ export function SidebarFilter({
                             Filters
                         </Button>
                     </SheetTrigger>
-                    <SheetContent side="left" className="w-full sm:w-[300px] pt-10">
-                        <FilterContent />
+                    <SheetContent side="left" className="w-full sm:w-[300px] p-0">
+                        <div className="h-[calc(100vh-2rem)] overflow-y-auto p-6">
+                            <FilterContent />
+                        </div>
                     </SheetContent>
                 </Sheet>
             </div>
 
             {/* Desktop Sidebar */}
             <aside className="hidden lg:block w-64 p-6 border-r min-h-screen bg-muted/10">
-                <div className="sticky top-6">
+                <div className="sticky top-6 overflow-y-auto max-h-[calc(100vh-3rem)]">
                     <FilterContent />
                 </div>
             </aside>

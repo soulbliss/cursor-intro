@@ -61,7 +61,7 @@ export function DemosContent() {
 
     return (
         <div className="flex flex-col md:flex-row gap-8 p-4 md:p-8">
-            <aside className="md:w-64 space-y-8">
+            <aside className="md:w-64 space-y-8 md:sticky md:top-0 md:h-screen">
                 <SidebarFilter
                     categories={categoryOptions}
                     difficulties={difficulties}
@@ -71,7 +71,7 @@ export function DemosContent() {
                     onFilterChange={setFilters}
                 />
             </aside>
-            <main className="flex-1">
+            <main className="flex-1 min-h-screen overflow-y-auto">
                 <section className="mb-12 text-center">
                     <h1 className="text-4xl font-bold tracking-tight mb-4">Cursor Demos</h1>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
