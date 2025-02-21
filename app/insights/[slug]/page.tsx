@@ -320,7 +320,9 @@ export default async function InsightPage({ params }: Props) {
                                                     </div>
                                                 </AccordionTrigger>
                                                 <AccordionContent className="text-sm text-muted-foreground pt-2 border-t mt-2">
-                                                    {practice.source}
+                                                    <Link href={`https://www.reddit.com${post.permalink}`} target="_blank" className="underline" rel="noopener noreferrer">
+                                                        {practice.source}
+                                                    </Link>
                                                 </AccordionContent>
                                             </AccordionItem>
                                         </Accordion>
@@ -356,7 +358,9 @@ export default async function InsightPage({ params }: Props) {
                                                     </div>
                                                 </AccordionTrigger>
                                                 <AccordionContent className="text-sm text-muted-foreground pt-2 border-t mt-2">
-                                                    {practice.source}
+                                                    <Link href={`https://www.reddit.com${post.permalink}`} target="_blank" className="underline" rel="noopener noreferrer">
+                                                        {practice.source}
+                                                    </Link>
                                                 </AccordionContent>
                                             </AccordionItem>
                                         </Accordion>
@@ -366,54 +370,56 @@ export default async function InsightPage({ params }: Props) {
                         </div>
                     </Card>
                 </div>
-            </div>
+            </div >
 
             {/* Related Posts Section */}
-            {relatedPosts.length > 0 && (
-                <div className="mt-12">
-                    <h2 className="text-2xl font-semibold mb-6">Related Posts</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {relatedPosts.map((relatedPost) => (
-                            <Link
-                                key={relatedPost.id}
-                                href={`/insights/${encodeURIComponent(relatedPost.title.split(' ').join('-'))}`}
-                            >
-                                <Card className="h-full hover:bg-muted/50 transition-colors">
-                                    <div className="p-6 space-y-4">
-                                        <div className="flex gap-2 mb-3">
-                                            {relatedPost.project_type !== 'Undefined' && <Badge variant="outline" className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800">
-                                                {relatedPost.project_type} project
-                                            </Badge>}
-                                            <Badge variant="outline" className="bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800">
-                                                {relatedPost.type_of_project}
+            {
+                relatedPosts.length > 0 && (
+                    <div className="mt-12">
+                        <h2 className="text-2xl font-semibold mb-6">Related Posts</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {relatedPosts.map((relatedPost) => (
+                                <Link
+                                    key={relatedPost.id}
+                                    href={`/insights/${encodeURIComponent(relatedPost.title.split(' ').join('-'))}`}
+                                >
+                                    <Card className="h-full hover:bg-muted/50 transition-colors">
+                                        <div className="p-6 space-y-4">
+                                            <div className="flex gap-2 mb-3">
+                                                {relatedPost.project_type !== 'Undefined' && <Badge variant="outline" className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800">
+                                                    {relatedPost.project_type} project
+                                                </Badge>}
+                                                <Badge variant="outline" className="bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800">
+                                                    {relatedPost.type_of_project}
+                                                </Badge>
+                                            </div>
+                                            <h3 className="font-semibold text-lg line-clamp-2">{relatedPost.title}</h3>
+                                            <Badge variant="outline" className="bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800">
+                                                {relatedPost.type_of_problem}
                                             </Badge>
+                                            <p className="text-muted-foreground text-sm line-clamp-3">
+                                                {relatedPost.summary}
+                                            </p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {relatedPost.tags.slice(0, 3).map((tag) => (
+                                                    <Badge key={tag} variant="outline" className="text-xs bg-gray-50 dark:bg-gray-900/20">
+                                                        {tag}
+                                                    </Badge>
+                                                ))}
+                                                {relatedPost.tags.length > 3 && (
+                                                    <Badge variant="outline" className="text-xs bg-gray-50 dark:bg-gray-900/20">
+                                                        +{relatedPost.tags.length - 3} more
+                                                    </Badge>
+                                                )}
+                                            </div>
                                         </div>
-                                        <h3 className="font-semibold text-lg line-clamp-2">{relatedPost.title}</h3>
-                                        <Badge variant="outline" className="bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800">
-                                            {relatedPost.type_of_problem}
-                                        </Badge>
-                                        <p className="text-muted-foreground text-sm line-clamp-3">
-                                            {relatedPost.summary}
-                                        </p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {relatedPost.tags.slice(0, 3).map((tag) => (
-                                                <Badge key={tag} variant="outline" className="text-xs bg-gray-50 dark:bg-gray-900/20">
-                                                    {tag}
-                                                </Badge>
-                                            ))}
-                                            {relatedPost.tags.length > 3 && (
-                                                <Badge variant="outline" className="text-xs bg-gray-50 dark:bg-gray-900/20">
-                                                    +{relatedPost.tags.length - 3} more
-                                                </Badge>
-                                            )}
-                                        </div>
-                                    </div>
-                                </Card>
-                            </Link>
-                        ))}
+                                    </Card>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            )}
-        </div>
+                )
+            }
+        </div >
     )
 } 
