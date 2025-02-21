@@ -1,8 +1,6 @@
 import { TweetMediaWrapper } from "@/components/tweet-media";
 import { getEmbedUrl, isVideoUrl } from "@/utils/video";
 import { Tip } from "content-collections";
-import dayjs from "dayjs";
-import { Clock, Gauge, Sparkles } from "lucide-react";
 import Image from "next/image";
 
 interface TipContentProps {
@@ -17,35 +15,18 @@ const getTweetId = (tweetUrl: string) => {
 
 export function TipContent({ tip }: TipContentProps) {
     return (
-        <div className="container max-w-4xl mx-auto py-8 px-4">
+        <article className="max-w-4xl mx-auto">
             <div className="space-y-8">
-                {/* Title and metadata section */}
-                <div className="space-y-4">
+                {/* Title section */}
+                <header>
                     <h1 className="text-4xl font-bold">{tip.title}</h1>
-                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                            <Gauge className="w-4 h-4" />
-                            <span className={`capitalize ${tip.difficulty === "beginner" ? "text-emerald-500" :
-                                tip.difficulty === "intermediate" ? "text-amber-500" :
-                                    tip.difficulty === "advanced" ? "text-rose-500" : ""
-                                }`}>{tip.difficulty}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                            <Sparkles className="w-4 h-4" />
-                            <span>{tip.feature}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
-                            <span>{dayjs(tip.date).format("MMMM D, YYYY")}</span>
-                        </div>
-                    </div>
-                </div>
+                </header>
 
                 {/* Media section */}
-                <div className="space-y-6">
+                <div className="space-y-8">
                     {/* Video embed */}
                     {tip.media.video && (
-                        <div className="aspect-video rounded-lg overflow-hidden">
+                        <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
                             {isVideoUrl(tip.media.video) ? (
                                 <iframe
                                     src={getEmbedUrl(tip.media.video)}
@@ -67,30 +48,31 @@ export function TipContent({ tip }: TipContentProps) {
 
                     {/* Screenshots */}
                     {tip.media.screenshots && (
-                        <div className="space-y-4">
+                        <div className="space-y-8">
                             {tip.media.screenshots.map((screenshot, index) => (
-                                <div key={index} className="space-y-2">
-                                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg border">
+                                <figure key={index} className="space-y-3">
+                                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg border shadow-md">
                                         <Image
                                             src={screenshot.url}
                                             alt={screenshot.caption || `Screenshot ${index + 1}`}
                                             fill
                                             className="object-contain"
+                                            priority={index === 0}
                                         />
                                     </div>
                                     {screenshot.caption && (
-                                        <p className="text-sm text-muted-foreground text-center">
+                                        <figcaption className="text-sm text-muted-foreground text-center">
                                             {screenshot.caption}
-                                        </p>
+                                        </figcaption>
                                     )}
-                                </div>
+                                </figure>
                             ))}
                         </div>
                     )}
 
                     {/* Tweet embed */}
                     {tip.media.tweetUrl && (
-                        <div className="rounded-lg overflow-hidden">
+                        <div className="rounded-lg overflow-hidden shadow-sm">
                             {getTweetId(tip.media.tweetUrl) && (
                                 <TweetMediaWrapper id={getTweetId(tip.media.tweetUrl)!} />
                             )}
@@ -101,11 +83,11 @@ export function TipContent({ tip }: TipContentProps) {
                 {/* Content section */}
                 <div className="prose prose-gray max-w-none dark:prose-invert">
                     <p className="text-lg leading-relaxed">{tip.summary}</p>
-                    <div dangerouslySetInnerHTML={{ __html: tip.html }} />
+                    <div className="mt-8" dangerouslySetInnerHTML={{ __html: tip.html }} />
                 </div>
 
                 {/* Author section */}
-                <div className="border-t pt-6">
+                <footer className="border-t pt-6 mt-12">
                     <div className="flex items-center gap-4">
                         <div>
                             <p className="font-medium">Original source: {tip.author.name}</p>
@@ -115,7 +97,7 @@ export function TipContent({ tip }: TipContentProps) {
                                         href={tip.author.github}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-muted-foreground hover:text-primary"
+                                        className="text-muted-foreground hover:text-primary transition-colors"
                                     >
                                         GitHub
                                     </a>
@@ -125,7 +107,7 @@ export function TipContent({ tip }: TipContentProps) {
                                         href={tip.author.x}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-muted-foreground hover:text-primary"
+                                        className="text-muted-foreground hover:text-primary transition-colors"
                                     >
                                         X (Twitter)
                                     </a>
@@ -133,8 +115,8 @@ export function TipContent({ tip }: TipContentProps) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </footer>
             </div>
-        </div>
+        </article>
     );
 } 
