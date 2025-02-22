@@ -59,13 +59,18 @@ export function SiteHeader() {
                 <span>{label}</span>
               </Link>
             ))}
+            <Link href="https://analytics.deeps.dev/cursorintro.com" target="_blank" rel="noreferrer">
+              <Button variant="link" size="sm" className='text-muted-foreground/60'>
+                Traffic Stats
+              </Button>
+            </Link>
             <ThemeToggle />
             <Link
               href="https://github.com/soulbliss/cursor-intro"
               target="_blank"
               rel="noreferrer"
             >
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" >
                 Contribute a Demo
               </Button>
             </Link>
