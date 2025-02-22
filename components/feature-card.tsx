@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { LucideIcon } from "lucide-react"
+import { ExternalLink, LucideIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -24,19 +24,20 @@ export function FeatureCard({
         <Link
             href={href}
             className={cn(
-                "group relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-md",
+                "group relative overflow-hidden rounded-lg border bg-background p-2 transition-all hover:shadow-md sm:p-2",
                 className
             )}
             aria-label={`Learn more about ${title}`}
         >
-            <div className="flex h-full flex-col p-4">
-                <div className="mb-4 flex items-center gap-2">
-                    <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
-                    <h3 className="font-display text-xl font-semibold">{title}</h3>
+            <div className="flex h-full flex-col p-2 sm:p-4">
+                <div className="mb-2 sm:mb-4 flex items-center gap-2">
+                    <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" aria-hidden="true" />
+                    <h3 className="font-display text-lg sm:text-xl font-semibold">{title}</h3>
+                    <ExternalLink className="ml-auto h-4 w-4 md:hidden block text-muted-foreground/40 hover:text-foreground" />
                 </div>
 
                 {imageSrc && (
-                    <div className="relative mb-4 aspect-video w-full overflow-hidden rounded-lg">
+                    <div className="relative mb-2 sm:mb-4 hidden sm:block aspect-video w-full overflow-hidden rounded-lg">
                         <Image
                             src={imageSrc}
                             alt={title}
@@ -49,7 +50,7 @@ export function FeatureCard({
                     </div>
                 )}
 
-                <p className="text-muted-foreground">{description}</p>
+                <p className="text-sm sm:text-base text-muted-foreground">{description}</p>
             </div>
         </Link>
     )

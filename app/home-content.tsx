@@ -3,6 +3,7 @@
 import { FeatureCard } from "@/components/feature-card"
 import { AlertTriangle, BookMarked, Sparkles, Video } from "lucide-react"
 import { useState } from "react"
+import { DemosContent } from "./demos/demos-content"
 
 export function HomeContent() {
     const [searchQuery, setSearchQuery] = useState("")
@@ -31,7 +32,7 @@ export function HomeContent() {
                     </div>
                 </section>
 
-                <section className="container max-w-[1200px] px-4 pb-16">
+                <section className="container max-w-[1200px] px-4 pb-4">
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                         <FeatureCard
                             title="Insights"
@@ -39,15 +40,13 @@ export function HomeContent() {
                             href="/insights"
                             icon={Sparkles}
                             imageSrc="https://cdn.diligenceai.dev/assets/insights.webp"
-                            className="lg:col-span-2"
                         />
                         <FeatureCard
                             title="Best Practices"
-                            description="Master Cursor with professional tips and techniques for maximum productivity."
+                            description="Understand Cursor with experienced users' tips and techniques for maximum productivity."
                             href="/best-practices"
                             icon={BookMarked}
                             imageSrc="https://cdn.diligenceai.dev/assets/best_practices.webp"
-                            className="lg:col-span-2"
                         />
                         <FeatureCard
                             title="Video Demos"
@@ -55,17 +54,19 @@ export function HomeContent() {
                             href="/demos"
                             icon={Video}
                             imageSrc="https://cdn.diligenceai.dev/assets/video_demos.webp"
-                            className="md:col-span-2 lg:col-span-2"
                         />
                         <FeatureCard
-                            title="Common Mistakes"
+                            title="Mistakes to avoid"
                             description="Save hours by learning what to avoid and how to fix common issues."
                             href="/mistakes-to-avoid"
                             icon={AlertTriangle}
                             imageSrc="https://cdn.diligenceai.dev/assets/mistakes_avoid.webp"
-                            className="md:col-span-2 lg:col-span-2"
                         />
                     </div>
+
+                </section>
+                <section className="max-w-[1600px] pb-16">
+                    <DemosContent />
                 </section>
             </main>
         </div>
