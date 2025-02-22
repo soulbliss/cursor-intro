@@ -1,7 +1,7 @@
 ---
 title: "Clone Websites with Firecrawl MCP"
 summary: "Learn how to use Cursor's MCP server with Firecrawl to instantly clone and analyze any website directly from the editor"
-date: 2025-02-20
+date: 2025-02-22
 author:
   name: "Eric Ciarla"
   x: "https://x.com/ericciarla"
