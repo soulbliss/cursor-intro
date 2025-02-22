@@ -2,6 +2,7 @@
 
 import { FeatureCard } from "@/components/feature-card"
 import { AlertTriangle, BookMarked, Sparkles, Video } from "lucide-react"
+import Link from "next/link"
 import { useState } from "react"
 import { DemosContent } from "./demos/demos-content"
 
@@ -26,9 +27,28 @@ export function HomeContent() {
                         <h1 className="font-sans text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                             Cursor AI tips and tricks
                         </h1>
-                        <p className="max-w-[700px] text-muted-foreground sm:text-lg">
-                            Learn to use Cursor effectively with best practices, common mistakes to avoid, and hands-on demos.
-                        </p>
+                        <div className="max-w-[700px] space-y-4 text-center">
+                            <p className="text-muted-foreground sm:text-lg">
+                                Learn to use Cursor effectively with{' '}
+                                <Link href="/best-practices" className="text-primary underline">
+                                    best practices
+                                </Link>
+                                ,{' '}
+                                <Link href="/mistakes-to-avoid" className="text-primary underline">
+                                    common mistakes to avoid
+                                </Link>
+                                ,{' '}
+                                <Link href="/insights" className="text-primary underline">
+                                    community insights
+                                </Link>
+                                , and{' '}
+                                <Link href="/demos" className="text-primary underline">
+                                    hands-on demos
+                                </Link>
+                                .
+                            </p>
+
+                        </div>
                     </div>
                 </section>
 

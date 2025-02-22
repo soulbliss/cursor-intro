@@ -33,7 +33,7 @@ export function FeatureCard({
                 <div className="mb-2 sm:mb-4 flex items-center gap-2">
                     <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" aria-hidden="true" />
                     <h3 className="font-display text-lg sm:text-xl font-semibold">{title}</h3>
-                    <ExternalLink className="ml-auto h-4 w-4 md:hidden block text-muted-foreground/40 hover:text-foreground" />
+                    <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground/40 hover:text-foreground" />
                 </div>
 
                 {imageSrc && (
