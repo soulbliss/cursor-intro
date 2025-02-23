@@ -16,6 +16,8 @@ type Props = {
     params: { slug: string }
 }
 
+export const revalidate = 86400 // 24 hours
+
 type PostWithColumns = {
     author: string
     created_utc: number
