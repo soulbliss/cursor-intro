@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils"
 import { ExternalLink, LucideIcon } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 
 interface FeatureCardProps {
@@ -38,13 +37,10 @@ export function FeatureCard({
 
                 {imageSrc && (
                     <div className="relative mb-2 sm:mb-4 hidden sm:block aspect-video w-full overflow-hidden rounded-lg">
-                        <Image
+                        <img
                             src={imageSrc}
                             alt={title}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             loading="lazy"
-                            quality={75}
                             className="object-cover transition-transform group-hover:scale-105"
                         />
                     </div>
