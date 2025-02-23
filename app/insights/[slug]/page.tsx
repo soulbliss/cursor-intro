@@ -17,6 +17,7 @@ type Props = {
 }
 
 export const revalidate = 86400 // 24 hours
+export const dynamic = "force-static";
 
 type PostWithColumns = {
     author: string
