@@ -38,7 +38,7 @@ export function SiteFooter() {
     ];
 
     const resourceLinks = [
-        { href: "https://github.com/soulbliss/cursor-intro", label: "GitHub Repo" },
+        { href: "https://github.com/soulbliss/cursor-intro", label: "Contribute" },
         { href: "https://analytics.deeps.dev/cursorintro.com", label: "Traffic Stats" }
     ];
 
