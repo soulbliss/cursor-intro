@@ -109,7 +109,7 @@ export function SidebarFilter({
     return (
         <>
             {/* Mobile Filter Button */}
-            <div className="lg:hidden fixed bottom-4 right-4 z-50">
+            <div className="lg:hidden fixed bottom-28 right-4 z-50">
                 <Sheet open={open} onOpenChange={setOpen}>
                     <SheetTrigger asChild>
                         <Button size="lg" className="rounded-full shadow-lg">

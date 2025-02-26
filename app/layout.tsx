@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import { Metadata } from 'next';
 
 import { Analytics } from '@/components/analytics';
+import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -34,9 +35,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
         fontDisplay.variable
       )}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <div className="relative flex min-h-screen flex-col mb-20">
+          <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
-            {children}
+            <main className="flex-1">
+              {children}
+            </main>
+            <SiteFooter />
           </div>
           <Analytics />
           <TailwindIndicator />
