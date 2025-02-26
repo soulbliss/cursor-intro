@@ -34,7 +34,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         fontDisplay.variable
       )}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <div className="relative flex min-h-screen flex-col">
+          <div className="relative flex min-h-screen flex-col mb-20">
             <SiteHeader />
             {children}
           </div>
