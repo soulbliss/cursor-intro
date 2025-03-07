@@ -8,7 +8,7 @@ export function Analytics() {
       <Script
         defer
         data-domain="cursorintro.com"
-        src="https://analytics.deeps.dev/js/script.js"></Script>
+        src="https://analytics.deeps.dev/js/script.outbound-links.js"></Script>
       <Script id="microsoft-clarity">
         {`
           (function(c,l,a,r,i,t,y){

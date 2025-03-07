@@ -11,14 +11,31 @@ export function ToolRecommendation() {
     const [isVisible, setIsVisible] = useState(false)
     const [isClosed, setIsClosed] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
+    const [selectedContent, setSelectedContent] = useState<typeof content[0]>()
     const pathname = usePathname()
 
+    const content = [
+        {
+            title: 'Another Wrapper',
+            description: '10+ AI demo apps to build your next AI project faster',
+            link: 'https://anotherwrapper.com?aff=1eqmm',
+            image: 'https://cdn.diligenceai.dev/assets/another-wrapper.png',
+        },
+        {
+            title: 'Diligence AI',
+            description: 'Get your AI MVP built in the next 4 weeks!',
+            link: 'http://diligenceai.dev?via=cursorintro',
+            image: 'https://cdn.diligenceai.dev/assets/diligence.webp',
+        }
+    ]
+
     useEffect(() => {
-        // Reset states on page navigation
         setIsClosed(false)
         setIsVisible(false)
 
-        // Set mobile state based on screen width
+        const randomIndex = Math.floor(Math.random() * content.length)
+        setSelectedContent(content[randomIndex])
+
         const checkMobile = () => {
             setIsMobile(window.innerWidth < 768)
         }
@@ -26,7 +43,6 @@ export function ToolRecommendation() {
         checkMobile()
         window.addEventListener('resize', checkMobile)
 
-        // Show popup after 2.5 seconds
         const timer = setTimeout(() => {
             setIsVisible(true)
         }, 2500)
@@ -35,14 +51,14 @@ export function ToolRecommendation() {
             clearTimeout(timer)
             window.removeEventListener('resize', checkMobile)
         }
-    }, [pathname]) // Reset and show on every page navigation
+    }, [pathname])
 
     const handleClose = () => {
         setIsVisible(false)
         setIsClosed(true)
     }
 
-    if (isClosed) return null
+    if (isClosed || !selectedContent) return null
 
     return (
         <div
@@ -50,41 +66,51 @@ export function ToolRecommendation() {
                 'fixed z-50 transition-all duration-300 ease-in-out',
                 isMobile
                     ? 'bottom-0 left-0 right-0 transform translate-y-full'
-                    : 'bottom-4 right-4 max-w-[320px] transform translate-y-[200%]',
+                    : 'bottom-2 right-2 max-w-[350px] transform translate-y-[150%]',
                 isVisible && 'transform translate-y-0'
             )}
         >
-            <div className="bg-white dark:bg-background rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <div className="relative">
                     <Button
                         variant="ghost"
                         size="icon"
-                        className="absolute top-2 right-2 h-6 w-6 rounded-full z-10"
+                        className="absolute top-1 right-1 h-5 w-5 rounded-full z-10"
                         onClick={handleClose}
                     >
-                        <X className="h-4 w-4" />
+                        <X className="h-3 w-3" />
                         <span className="sr-only">Close</span>
                     </Button>
 
                     <Link
-                        href="https://anotherwrapper.com?aff=1eqmm"
+                        href={selectedContent.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block cursor-pointer"
                     >
-                        <div className="p-4">
-                            <div className="flex items-center gap-3 mb-2">
+                        <div className="flex flex-col md:flex-row items-center py-1 px-4 gap-3">
+                            <div className="flex-shrink-0 w-full md:w-1/4">
                                 <img
-                                    src="https://cdn.diligenceai.dev/assets/another-wrapper.png"
-                                    alt="Another Wrapper"
-                                    width={100}
-                                    height={30}
-                                    className="h-8 w-auto bg-white/80"
+                                    src={selectedContent.image}
+                                    alt={selectedContent.title}
+                                    width={80}
+                                    height={80}
+                                    className="w-full hidden md:block h-auto object-contain bg-white/80 rounded-none"
                                 />
                             </div>
-                            <p className="text-xs text-gray-500 dark:text-gray-300">
-                                10+ customizable AI demo apps: pick one, make it yours, launch your AI app today!
-                            </p>
+                            <div className="flex-grow w-full md:w-3/4">
+                                <h3 className="font-semibold text-md mb-1 text-gray-900 dark:text-white">
+                                    {selectedContent.title}
+                                </h3>
+                                <p className="text-xs text-gray-600 dark:text-gray-300">
+                                    {selectedContent.description}
+                                </p>
+                                <div className="mt-1">
+                                    <button className="text-blue-600 dark:text-blue-300 text-xs font-bold hover:underline hover:text-blue-800 dark:hover:text-blue-400 transition duration-200">
+                                        Learn More →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </Link>
                 </div>
