@@ -1,0 +1,16 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+    "name": "postgres",
+    "type": "registry:block",
+    "title": "Postgres",
+    "description": "Postgres",
+    "dependencies": [],
+    "files": [
+        {
+            "path": ".cursor/mcp.json",
+            "content": "{\"mcpServers\": {\"postgres\": {\"command\": \"npx\", \"args\": [\"-y\", \"@modelcontextprotocol/server-postgres\", \"postgresql://username:password@localhost:5432/database_name\"]}}}",
+            "type": "registry:page",
+            "target": ".cursor/mcp.json"
+        }
+    ]
+}
