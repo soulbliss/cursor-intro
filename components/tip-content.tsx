@@ -1,7 +1,10 @@
 import { TweetMediaWrapper } from "@/components/tweet-media";
+import { mdxComponents } from "@/lib/mdx-components";
 import { getEmbedUrl, isVideoUrl } from "@/utils/video";
+import { MDXContent } from "@content-collections/mdx/react";
 import { Tip } from "content-collections";
 import Image from "next/image";
+
 
 interface TipContentProps {
     tip: Tip;
@@ -83,8 +86,9 @@ export function TipContent({ tip }: TipContentProps) {
                 {/* Content section */}
                 <div className="prose prose-gray max-w-none dark:prose-invert">
                     <p className="text-lg leading-relaxed">{tip.summary}</p>
-                    <div className="mt-8" dangerouslySetInnerHTML={{ __html: tip.html }} />
+                    <MDXContent code={tip.mdx} components={mdxComponents} />
                 </div>
+
 
                 {/* Author section */}
                 <footer className="border-t pt-6 mt-12">

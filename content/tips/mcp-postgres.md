@@ -15,6 +15,10 @@ tools: ["postgres"]
 
 The Model Context Protocol (MCP) allows Cursor to connect directly to your data sources. With the Postgres MCP server, you can query and analyze your Postgres database right from within Cursor.
 
+## Installation
+
+<Installation url="https://cursorintro.com/mcp-rules/r/postgres.json" />
+
 ## Getting Started
 
 Check out the [Postgres MCP server documentation](https://github.com/modelcontextprotocol/servers/tree/main/src/postgres) for more information on how to connect to your database.
