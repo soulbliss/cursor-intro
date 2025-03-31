@@ -1,7 +1,7 @@
 ---
 title: "Postgres MCP server"
 summary: "Learn how to use Cursor's MCP server to connect to and query your Postgres database directly from the editor"
-date: 2025-02-18
+date: 2025-03-31
 author:
   name: "Deepak Garasangi"
   x: "https://x.com/soulblissX"
