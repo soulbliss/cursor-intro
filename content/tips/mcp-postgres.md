@@ -8,7 +8,7 @@ author:
 feature: "Postgres MCP server"
 difficulty: "intermediate"
 media:
-  video: "https://cdn.diligenceai.dev/assets/cursor_postgres.mp4"
+  video: "https://cdn.diligenceai.dev/assets/cursor-postgres%200.47.mp4"
 categories: ["mcp_servers"]
 tools: ["postgres"]
 ---
