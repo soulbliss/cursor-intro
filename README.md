@@ -26,27 +26,27 @@ We welcome contributions from the community! If you have a tip to share:
 3. Create your tip following the template
 4. Submit a Pull Request
 
-
 ## Getting Started
 
 1. Clone the repository
+
 ```bash
 git clone https://github.com/yourusername/cursor-intro.git
 cd cursor-intro
 ```
 
 2. Install dependencies
+
 ```bash
 npm install
 ```
 
 3. Run the development server
+
 ```bash
 npm run dev
 ```
 
-
 ## Categories
 
 Tips are organized into various categories to help users find relevant content. Check the `/config/categories.json` file for the complete list of categories.
-
