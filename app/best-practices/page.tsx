@@ -1,3 +1,4 @@
+import { siteConfig } from '@/config/site'
 import { db } from '@/db'
 import { postInsights, posts } from '@/db/schema'
 import { desc, sql } from 'drizzle-orm'
@@ -6,7 +7,7 @@ import { BestPracticesList } from './components/best-practices-list'
 import { BestPracticesHeader } from './components/header'
 
 // Revalidate every 12 hours
-export const revalidate = 43200; // 12 hours in seconds
+export const revalidate = siteConfig.revalidate; // 12 hours in seconds
 
 // Static metadata for the best practices page
 export const metadata: Metadata = {

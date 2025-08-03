@@ -1,3 +1,4 @@
+import { siteConfig } from '@/config/site'
 import { db } from '@/db'
 import { postInsights, posts } from '@/db/schema'
 import { desc, sql } from 'drizzle-orm'
@@ -6,7 +7,7 @@ import { MistakesHeader } from './components/header'
 import { MistakesList } from './components/mistakes-list'
 
 // Revalidate every 12 hours
-export const revalidate = 43200; // 12 hours in seconds
+export const revalidate = siteConfig.revalidate; // 12 hours in seconds
 
 export const metadata: Metadata = {
     title: 'Common Mistakes to Avoid | Cursor Intro - Best Cursor Tips & Tricks',

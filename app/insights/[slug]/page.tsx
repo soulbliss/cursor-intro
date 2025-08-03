@@ -3,6 +3,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { siteConfig } from '@/config/site'
 import { db } from '@/db'
 import { postInsights } from '@/db/schema/post_insights'
 import { formatDistanceToNow } from 'date-fns'
@@ -16,7 +17,7 @@ type Props = {
     params: { slug: string }
 }
 
-export const revalidate = 86400 // 24 hours
+export const revalidate = siteConfig.revalidate; // 24 hours
 export const dynamic = "force-static";
 
 type PostWithColumns = {

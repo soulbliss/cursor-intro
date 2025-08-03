@@ -1,8 +1,9 @@
+import { siteConfig } from '@/config/site'
 import { Metadata } from 'next'
 import { HomeContent } from './home-content'
 
 // Revalidate every 12 hours
-export const revalidate = 43200
+export const revalidate = siteConfig.revalidate
 
 export const metadata: Metadata = {
   title: 'Cursor Intro - Best Cursor Tips & Tricks',

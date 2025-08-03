@@ -1,5 +1,6 @@
 import { TipContent } from "@/components/tip-content";
 import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/config/site";
 import { allTips } from "content-collections";
 import dayjs from "dayjs";
 import { ArrowLeft, Clock, Gauge, Sparkles } from "lucide-react";
@@ -14,7 +15,7 @@ interface PageProps {
 }
 
 export const dynamic = "force-static";
-export const revalidate = 86400 // 24 hours
+export const revalidate = siteConfig.revalidate;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const tip = allTips.find((t) => t._meta.path === params.slug);
