@@ -16,5 +16,5 @@ export const siteConfig = {
     twitter: 'https://twitter.com/soulblissx',
     github: 'https://github.com/soulbliss/cursor-intro',
   },
-  revalidate: 5, // 12 hours in seconds
+  revalidate: 86400, // 12 hours in seconds
 };

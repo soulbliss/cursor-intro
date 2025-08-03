@@ -22,6 +22,7 @@ type FilterProps = {
         impactLevels: string[]
         projectTypes: string[]
         problemTypes: string[]
+        sortBy: 'default' | 'newest' | 'oldest'
     }) => void
     variant?: 'card' | 'sheet'
 }
@@ -48,6 +49,7 @@ export function Filter({ mistakes, onFilterChange, variant = 'card' }: FilterPro
     const [selectedImpactLevels, setSelectedImpactLevels] = useState<string[]>([])
     const [selectedProjectTypes, setSelectedProjectTypes] = useState<string[]>([])
     const [selectedProblemTypes, setSelectedProblemTypes] = useState<string[]>([])
+    const [sortBy, setSortBy] = useState<'default' | 'newest' | 'oldest'>('default')
 
     // Update handlers that notify parent
     const updateFilters = () => {
@@ -57,11 +59,54 @@ export function Filter({ mistakes, onFilterChange, variant = 'card' }: FilterPro
             impactLevels: selectedImpactLevels,
             projectTypes: selectedProjectTypes,
             problemTypes: selectedProblemTypes,
+            sortBy,
+        })
+    }
+
+    const updateSort = (newSortBy: 'default' | 'newest' | 'oldest') => {
+        setSortBy(newSortBy)
+        onFilterChange({
+            languages: selectedLanguages,
+            tools: selectedTools,
+            impactLevels: selectedImpactLevels,
+            projectTypes: selectedProjectTypes,
+            problemTypes: selectedProblemTypes,
+            sortBy: newSortBy,
         })
     }
 
     const FilterContent = () => (
         <div className="space-y-6">
+            {/* Sort By Section */}
+            <div>
+                <h3 className="font-medium mb-3">Sort By</h3>
+                <div className="space-y-2">
+                    {[
+                        { value: 'default', label: 'Default (Impact & Popularity)' },
+                        { value: 'newest', label: 'Newest First' },
+                        { value: 'oldest', label: 'Oldest First' }
+                    ].map((option) => (
+                        <div key={option.value} className="flex items-center space-x-2">
+                            <Checkbox
+                                id={`sort-${option.value}`}
+                                checked={sortBy === option.value}
+                                onCheckedChange={(checked) => {
+                                    if (checked) {
+                                        updateSort(option.value as 'default' | 'newest' | 'oldest')
+                                    }
+                                }}
+                            />
+                            <label
+                                htmlFor={`sort-${option.value}`}
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                {option.label}
+                            </label>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
             {/* Selected Filters Display */}
             {(selectedLanguages.length > 0 || selectedTools.length > 0 || selectedImpactLevels.length > 0 ||
                 selectedProjectTypes.length > 0 || selectedProblemTypes.length > 0) && (
@@ -150,14 +195,15 @@ export function Filter({ mistakes, onFilterChange, variant = 'card' }: FilterPro
                                     const newValue = checked
                                         ? [...selectedImpactLevels, level]
                                         : selectedImpactLevels.filter((l) => l !== level)
-                                    setSelectedImpactLevels(newValue)
-                                    onFilterChange({
-                                        languages: selectedLanguages,
-                                        tools: selectedTools,
-                                        impactLevels: newValue,
-                                        projectTypes: selectedProjectTypes,
-                                        problemTypes: selectedProblemTypes,
-                                    })
+                                                                            setSelectedImpactLevels(newValue)
+                                        onFilterChange({
+                                            languages: selectedLanguages,
+                                            tools: selectedTools,
+                                            impactLevels: newValue,
+                                            projectTypes: selectedProjectTypes,
+                                            problemTypes: selectedProblemTypes,
+                                            sortBy,
+                                        })
                                 }}
                             />
                             <label
@@ -192,6 +238,7 @@ export function Filter({ mistakes, onFilterChange, variant = 'card' }: FilterPro
                                             impactLevels: selectedImpactLevels,
                                             projectTypes: newValue,
                                             problemTypes: selectedProblemTypes,
+                                            sortBy,
                                         })
                                     }}
                                 />
@@ -227,6 +274,7 @@ export function Filter({ mistakes, onFilterChange, variant = 'card' }: FilterPro
                                         impactLevels: selectedImpactLevels,
                                         projectTypes: selectedProjectTypes,
                                         problemTypes: selectedProblemTypes,
+                                        sortBy,
                                     })
                                 }}
                             />
@@ -261,6 +309,7 @@ export function Filter({ mistakes, onFilterChange, variant = 'card' }: FilterPro
                                         impactLevels: selectedImpactLevels,
                                         projectTypes: selectedProjectTypes,
                                         problemTypes: selectedProblemTypes,
+                                        sortBy,
                                     })
                                 }}
                             />

@@ -62,7 +62,7 @@ async function getBestPractices() {
         })
         .from(postInsights)
         .innerJoin(posts, sql`${posts.id} = ${postInsights.post_id}`)
-        .orderBy(desc(posts.ups))
+        .orderBy(desc(posts.ups), desc(posts.created_at))
 
     // Flatten best practices and attach metadata
     const flattenedPractices = insights.flatMap(insight =>
@@ -78,14 +78,8 @@ async function getBestPractices() {
         }))
     )
 
-    // Sort by impact level and upvotes
-    const sortedPractices = flattenedPractices.sort((a, b) => {
-        const impactOrder = { critical: 3, important: 2, nice_to_have: 1 }
-        const impactDiff = impactOrder[b.impact_level] - impactOrder[a.impact_level]
-        return impactDiff !== 0 ? impactDiff : b.ups - a.ups
-    })
-
-    return sortedPractices
+    // Return unsorted practices - let client handle sorting
+    return flattenedPractices
 }
 
 export default async function BestPracticesPage() {

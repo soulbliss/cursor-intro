@@ -64,7 +64,7 @@ async function getMistakes() {
         })
         .from(postInsights)
         .innerJoin(posts, sql`${posts.id} = ${postInsights.post_id}`)
-        .orderBy(desc(posts.ups))
+        .orderBy(desc(posts.ups), desc(posts.created_at))
 
     // Flatten mistakes and attach metadata
     const flattenedMistakes = insights.flatMap(insight =>
@@ -83,14 +83,8 @@ async function getMistakes() {
         }))
     )
 
-    // Sort by impact level and upvotes
-    const sortedMistakes = flattenedMistakes.sort((a, b) => {
-        const impactOrder = { critical: 3, important: 2, nice_to_have: 1 }
-        const impactDiff = impactOrder[b.impact_level] - impactOrder[a.impact_level]
-        return impactDiff !== 0 ? impactDiff : b.ups - a.ups
-    })
-
-    return sortedMistakes
+    // Return unsorted mistakes - let client handle sorting
+    return flattenedMistakes
 }
 
 export default async function MistakesPage() {

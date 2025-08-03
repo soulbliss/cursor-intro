@@ -20,6 +20,7 @@ type FilterProps = {
         languages: string[]
         tools: string[]
         impactLevels: string[]
+        sortBy: 'default' | 'newest' | 'oldest'
     }) => void
 }
 
@@ -37,6 +38,7 @@ export function Filter({ practices, onFilterChange }: FilterProps) {
     const [selectedLanguages, setSelectedLanguages] = useState<string[]>([])
     const [selectedTools, setSelectedTools] = useState<string[]>([])
     const [selectedImpactLevels, setSelectedImpactLevels] = useState<string[]>([])
+    const [sortBy, setSortBy] = useState<'default' | 'newest' | 'oldest'>('default')
 
     // Update handlers that notify parent
     const updateLanguages = (newLanguages: string[]) => {
@@ -45,6 +47,7 @@ export function Filter({ practices, onFilterChange }: FilterProps) {
             languages: newLanguages,
             tools: selectedTools,
             impactLevels: selectedImpactLevels,
+            sortBy,
         })
     }
 
@@ -54,6 +57,7 @@ export function Filter({ practices, onFilterChange }: FilterProps) {
             languages: selectedLanguages,
             tools: newTools,
             impactLevels: selectedImpactLevels,
+            sortBy,
         })
     }
 
@@ -63,11 +67,52 @@ export function Filter({ practices, onFilterChange }: FilterProps) {
             languages: selectedLanguages,
             tools: selectedTools,
             impactLevels: newImpactLevels,
+            sortBy,
+        })
+    }
+
+    const updateSort = (newSortBy: 'default' | 'newest' | 'oldest') => {
+        setSortBy(newSortBy)
+        onFilterChange({
+            languages: selectedLanguages,
+            tools: selectedTools,
+            impactLevels: selectedImpactLevels,
+            sortBy: newSortBy,
         })
     }
 
     const FilterContent = () => (
         <div className="space-y-6">
+            {/* Sort By Section */}
+            <div>
+                <h3 className="font-medium mb-3">Sort By</h3>
+                <div className="space-y-2">
+                    {[
+                        { value: 'default', label: 'Default (Impact & Popularity)' },
+                        { value: 'newest', label: 'Newest First' },
+                        { value: 'oldest', label: 'Oldest First' }
+                    ].map((option) => (
+                        <div key={option.value} className="flex items-center space-x-2">
+                            <Checkbox
+                                id={`sort-${option.value}`}
+                                checked={sortBy === option.value}
+                                onCheckedChange={(checked) => {
+                                    if (checked) {
+                                        updateSort(option.value as 'default' | 'newest' | 'oldest')
+                                    }
+                                }}
+                            />
+                            <label
+                                htmlFor={`sort-${option.value}`}
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                {option.label}
+                            </label>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
             {/* Impact Level Filter */}
             <div>
                 <h3 className="font-medium mb-3">Impact Level</h3>

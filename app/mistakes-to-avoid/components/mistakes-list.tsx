@@ -42,7 +42,14 @@ type Props = {
 const ITEMS_PER_PAGE = 10
 
 export function MistakesList({ mistakes }: Props) {
-    const [filteredMistakes, setFilteredMistakes] = useState(mistakes)
+    // Apply default sorting on initial load
+    const defaultSortedMistakes = [...mistakes].sort((a, b) => {
+        const impactOrder = { critical: 3, important: 2, nice_to_have: 1 }
+        const impactDiff = impactOrder[b.impact_level] - impactOrder[a.impact_level]
+        return impactDiff !== 0 ? impactDiff : b.ups - a.ups
+    })
+    
+    const [filteredMistakes, setFilteredMistakes] = useState(defaultSortedMistakes)
     const [currentPage, setCurrentPage] = useState(1)
 
     // Calculate pagination values
@@ -57,6 +64,7 @@ export function MistakesList({ mistakes }: Props) {
         impactLevels: string[]
         projectTypes: string[]
         problemTypes: string[]
+        sortBy: 'default' | 'newest' | 'oldest'
     }) => {
         const filtered = mistakes.filter((mistake) => {
             const matchesLanguages =
@@ -86,7 +94,21 @@ export function MistakesList({ mistakes }: Props) {
             return matchesLanguages && matchesTools && matchesImpact && matchesProjectType && matchesProblemType
         })
 
-        setFilteredMistakes(filtered)
+        // Apply sorting
+        const sorted = [...filtered].sort((a, b) => {
+            if (filters.sortBy === 'newest') {
+                return b.createdAt - a.createdAt
+            } else if (filters.sortBy === 'oldest') {
+                return a.createdAt - b.createdAt
+            } else {
+                // Default sorting: impact level first, then upvotes
+                const impactOrder = { critical: 3, important: 2, nice_to_have: 1 }
+                const impactDiff = impactOrder[b.impact_level] - impactOrder[a.impact_level]
+                return impactDiff !== 0 ? impactDiff : b.ups - a.ups
+            }
+        })
+
+        setFilteredMistakes(sorted)
         setCurrentPage(1) // Reset to first page when filters change
     }
 

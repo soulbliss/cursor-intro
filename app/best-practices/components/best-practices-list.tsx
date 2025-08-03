@@ -39,7 +39,14 @@ type Props = {
 const ITEMS_PER_PAGE = 10
 
 export function BestPracticesList({ practices }: Props) {
-    const [filteredPractices, setFilteredPractices] = useState(practices)
+    // Apply default sorting on initial load
+    const defaultSortedPractices = [...practices].sort((a, b) => {
+        const impactOrder = { critical: 3, important: 2, nice_to_have: 1 }
+        const impactDiff = impactOrder[b.impact_level] - impactOrder[a.impact_level]
+        return impactDiff !== 0 ? impactDiff : b.ups - a.ups
+    })
+    
+    const [filteredPractices, setFilteredPractices] = useState(defaultSortedPractices)
     const [currentPage, setCurrentPage] = useState(1)
 
     // Calculate pagination values
@@ -52,6 +59,7 @@ export function BestPracticesList({ practices }: Props) {
         languages: string[]
         tools: string[]
         impactLevels: string[]
+        sortBy: 'default' | 'newest' | 'oldest'
     }) => {
         const filtered = practices.filter((practice) => {
             const matchesLanguages =
@@ -73,7 +81,21 @@ export function BestPracticesList({ practices }: Props) {
             return matchesLanguages && matchesTools && matchesImpact
         })
 
-        setFilteredPractices(filtered)
+        // Apply sorting
+        const sorted = [...filtered].sort((a, b) => {
+            if (filters.sortBy === 'newest') {
+                return b.createdAt - a.createdAt
+            } else if (filters.sortBy === 'oldest') {
+                return a.createdAt - b.createdAt
+            } else {
+                // Default sorting: impact level first, then upvotes
+                const impactOrder = { critical: 3, important: 2, nice_to_have: 1 }
+                const impactDiff = impactOrder[b.impact_level] - impactOrder[a.impact_level]
+                return impactDiff !== 0 ? impactDiff : b.ups - a.ups
+            }
+        })
+
+        setFilteredPractices(sorted)
         setCurrentPage(1) // Reset to first page when filters change
     }
 
