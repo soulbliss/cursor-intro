@@ -14,7 +14,7 @@ export function MistakesHeader() {
             <div>
                 <h1 className="text-4xl font-bold">Common Mistakes to Avoid</h1>
                 <p className="text-muted-foreground mt-2">
-                    Learn from the community's experiences about what not to do in software development
+                    Learn from the community's experiences about what not to do when developing software with Cursor.
                 </p>
             </div>
         </div>
