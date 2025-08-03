@@ -137,7 +137,7 @@ async function getRelatedPosts(currentPost: typeof postInsights.$inferSelect, li
     // Convert tags array to a string array for SQL comparison
     const tags = currentPost.tags
 
-    return await db.query.postInsights.findMany({
+    const results = await db.query.postInsights.findMany({
         where: sql`${postInsights.id} != ${currentPost.id} 
             AND EXISTS (
                 SELECT 1 FROM jsonb_array_elements_text(${postInsights.tags}) tag
@@ -157,6 +157,31 @@ async function getRelatedPosts(currentPost: typeof postInsights.$inferSelect, li
             type_of_project: true,
             type_of_problem: true,
             tags: true,
+        },
+        with: {
+            post: {
+                columns: {
+                    author: true,
+                    created_utc: true,
+                    ups: true
+                }
+            }
+        }
+    })
+
+    // Calculate relevance score based on common tags
+    return results.map(post => {
+        const commonTags = post.tags.filter(tag => tags.includes(tag))
+        const relevanceScore = Math.round((commonTags.length / Math.max(tags.length, post.tags.length)) * 100)
+        
+        return {
+            ...post,
+            post: {
+                ...post.post,
+                created_utc: Number(post.post.created_utc),
+                ups: Number(post.post.ups)
+            },
+            relevanceScore
         }
     })
 }
@@ -386,35 +411,92 @@ export default async function InsightPage({ params }: Props) {
                                 <Link
                                     key={relatedPost.id}
                                     href={`/insights/${encodeURIComponent(relatedPost.title.split(' ').join('-'))}`}
+                                    className="block group"
                                 >
-                                    <Card className="h-full hover:bg-muted/50 transition-colors">
-                                        <div className="p-6 space-y-4">
-                                            <div className="flex gap-2 mb-3">
-                                                {relatedPost.project_type !== 'Undefined' && <Badge variant="outline" className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800">
-                                                    {relatedPost.project_type} project
-                                                </Badge>}
-                                                <Badge variant="outline" className="bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800">
+                                    <Card className="h-full hover:bg-muted/50 transition-colors border border-border/50">
+                                        <div className="p-6 space-y-3 h-full flex flex-col">
+                                            {/* Relevance score */}
+                                            <div className="flex items-center justify-end mb-4">
+                                                <div className="relative group/tooltip">
+                                                    <Badge variant="outline" className="bg-green-50 dark:bg-green-950/30 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800 text-xs font-semibold cursor-help">
+                                                        {relatedPost.relevanceScore}%
+                                                    </Badge>
+                                                    {/* CSS-only tooltip */}
+                                                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded-lg opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 whitespace-nowrap z-20 pointer-events-none">
+                                                        Relevance based on shared tags between posts
+                                                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-gray-100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Project badges */}
+                                            <div className="flex flex-wrap gap-2 mb-4" style={{minHeight: '56px'}}>
+                                                {relatedPost.project_type !== 'Undefined' && (
+                                                    <Badge variant="outline" className="bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800">
+                                                        {relatedPost.project_type} project
+                                                    </Badge>
+                                                )}
+                                                <Badge variant="outline" className="bg-purple-50 dark:bg-purple-950/30 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800">
                                                     {relatedPost.type_of_project}
                                                 </Badge>
+                                                <Badge variant="outline" className="bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800">
+                                                    {relatedPost.type_of_problem}
+                                                </Badge>
                                             </div>
-                                            <h3 className="font-semibold text-lg line-clamp-2">{relatedPost.title}</h3>
-                                            <Badge variant="outline" className="bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800">
-                                                {relatedPost.type_of_problem}
-                                            </Badge>
-                                            <p className="text-muted-foreground text-sm line-clamp-3">
-                                                {relatedPost.summary}
-                                            </p>
-                                            <div className="flex flex-wrap gap-2">
+                                            
+                                            <div className="mb-4" style={{minHeight: '56px'}}>
+                                                <h3 className="font-semibold text-lg line-clamp-2 group-hover:text-primary transition-colors leading-7">{relatedPost.title}</h3>
+                                            </div>
+                                            
+                                            <div className="mb-4" style={{minHeight: '72px'}}>
+                                                <p className="text-muted-foreground text-sm line-clamp-3 leading-6">
+                                                    {relatedPost.summary}
+                                                </p>
+                                            </div>
+                                            
+                                            <div className="flex flex-wrap gap-2 mb-4" style={{minHeight: '40px'}}>
                                                 {relatedPost.tags.slice(0, 3).map((tag) => (
-                                                    <Badge key={tag} variant="outline" className="text-xs bg-gray-50 dark:bg-gray-900/20">
+                                                    <Badge key={tag} variant="outline" className="text-xs bg-gray-50 dark:bg-gray-950/30">
                                                         {tag}
                                                     </Badge>
                                                 ))}
                                                 {relatedPost.tags.length > 3 && (
-                                                    <Badge variant="outline" className="text-xs bg-gray-50 dark:bg-gray-900/20">
+                                                    <Badge variant="outline" className="text-xs bg-gray-50 dark:bg-gray-950/30">
                                                         +{relatedPost.tags.length - 3} more
                                                     </Badge>
                                                 )}
+                                            </div>
+
+                                            {/* Spacer to push footer to bottom */}
+                                            <div className="flex-grow"></div>
+
+                                            {/* Footer with author and time */}
+                                            <div className="pt-3 border-t border-border/50">
+                                                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                                                    <div className="flex items-center gap-1 min-w-0 flex-1">
+                                                        <span className="truncate">
+                                                            {formatDistanceToNow(relatedPost.post.created_utc * 1000, { addSuffix: true })} • by{' '}
+                                                            <a 
+                                                                href={`https://www.reddit.com/user/${relatedPost.post.author}`}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="text-primary hover:underline"
+                                                            >
+                                                                {relatedPost.post.author}
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                    <div className="flex items-center gap-1 shrink-0 ml-2">
+                                                        <div className="relative group/reddit">
+                                                            <span className="cursor-help">↑ {relatedPost.post.ups}</span>
+                                                            {/* Reddit score tooltip */}
+                                                            <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded-lg opacity-0 invisible group-hover/reddit:opacity-100 group-hover/reddit:visible transition-all duration-200 whitespace-nowrap z-20 pointer-events-none">
+                                                                Reddit upvotes on original post
+                                                                <div className="absolute top-full right-3 border-4 border-transparent border-t-gray-900 dark:border-t-gray-100"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </Card>
