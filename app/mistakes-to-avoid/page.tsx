@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     ]
 }
 
-async function getMistakes() {
+export async function getMistakes() {
     const insights = await db
         .select({
             id: postInsights.id,
