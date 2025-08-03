@@ -35,7 +35,7 @@ type Props = {
     practices: Practice[]
 }
 
-const ITEMS_PER_PAGE = 10
+const ITEMS_PER_PAGE = 20
 
 export function BestPracticesList({ practices }: Props) {
     // Apply default sorting on initial load
@@ -263,8 +263,7 @@ export function BestPracticesList({ practices }: Props) {
                                 Previous
                             </Button>
                             <div className="text-sm text-muted-foreground">
-                                Page {currentPage} of {totalPages}
-                            </div>
+                            Page {currentPage} of {totalPages} <span className="text-xs text-muted-foreground">({practices.length} total items)</span>                            </div>
                             <Button
                                 variant="outline"
                                 onClick={goToNextPage}

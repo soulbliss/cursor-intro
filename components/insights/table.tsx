@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/table'
 import { filterInsights, paginateInsights, type InsightRow } from '@/lib/insights'
 import { cn } from '@/lib/utils'
+import { formatDistanceToNow } from 'date-fns'
 import { ArrowDownIcon, ArrowUpIcon, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import * as React from 'react'
@@ -113,6 +114,9 @@ export default function InsightsTable({
                 <Table>
                     <TableHeader>
                         <TableRow>
+                            <TableHead className="w-[60px]">
+                                #
+                            </TableHead>
                             <TableHead
                                 className="w-[400px] cursor-pointer"
                                 onClick={() => handleSort('title')}
@@ -127,6 +131,12 @@ export default function InsightsTable({
                             </TableHead>
                             <TableHead>Tags</TableHead>
                             <TableHead
+                                className="w-[120px] cursor-pointer"
+                                onClick={() => handleSort('createdAt')}
+                            >
+                                Updated <SortIcon columnKey="createdAt" />
+                            </TableHead>
+                            <TableHead
                                 className="text-right cursor-pointer"
                                 onClick={() => handleSort('relevanceScore')}
                             >
@@ -135,12 +145,15 @@ export default function InsightsTable({
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {paginatedInsights.map((insight) => (
+                        {paginatedInsights.map((insight, index) => (
                             <TableRow
                                 key={insight.id}
                                 className="cursor-pointer hover:bg-muted/50 transition-colors"
                                 onClick={() => router.push(`/insights/${createSlug(insight.title)}`)}
                             >
+                                <TableCell className="text-center text-sm text-muted-foreground">
+                                    {(state.page - 1) * state.perPage + index + 1}
+                                </TableCell>
                                 <TableCell>
                                     <div className="space-y-1">
                                         <div className="font-semibold">{insight.title}</div>
@@ -178,6 +191,11 @@ export default function InsightsTable({
                                         )}
                                     </div>
                                 </TableCell>
+                                <TableCell>
+                                    <div className="text-sm text-muted-foreground">
+                                        {formatDistanceToNow(insight.createdAt, { addSuffix: true })}
+                                    </div>
+                                </TableCell>
                                 <TableCell className="text-right">
                                     <Badge
                                         variant={
@@ -206,7 +224,7 @@ export default function InsightsTable({
             {totalPages > 1 && (
                 <div className="flex items-center justify-between">
                     <div className="text-sm text-muted-foreground">
-                        Page {state.page} of {totalPages}
+                        Page {state.page} of {totalPages} ({sortedAndFilteredInsights.length} total items)
                     </div>
                     <div className="flex items-center space-x-2">
                         <Button

@@ -30,7 +30,7 @@ async function getInsights() {
         })
         .from(postInsights)
         .innerJoin(posts, sql`${posts.id} = ${postInsights.post_id}`)
-        .orderBy(desc(postInsights.is_relevant_score))
+        .orderBy(desc(postInsights.is_relevant_score), desc(postInsights.created_at))
 
     const uniqueProjectTypes = Array.from(new Set(insights.map(i => i.projectType))).sort()
     const uniqueTypeOfProjects = Array.from(new Set(insights.map(i => i.typeOfProject))).sort()

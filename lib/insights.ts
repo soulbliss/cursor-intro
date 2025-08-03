@@ -43,7 +43,7 @@ export const insightFiltersSchema = z.object({
     languages: z.array(z.string()),
     search: z.string(),
     page: z.number().min(1),
-    perPage: z.number().min(1).max(50),
+    perPage: z.number().min(1).max(200),
 })
 
 // Helper functions
@@ -127,7 +127,7 @@ export function sortInsights(
 }
 
 // Constants
-export const DEFAULT_PER_PAGE = 20
+export const DEFAULT_PER_PAGE = 100
 export const DEFAULT_FILTERS: InsightFilters = {
     projectTypes: [],
     typeOfProjects: [],
