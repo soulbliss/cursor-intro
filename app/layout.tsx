@@ -7,6 +7,7 @@ import { SiteHeader } from '@/components/site-header';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ToolRecommendation } from '@/components/tool-recommendation';
+import { PromoBanner } from '@/components/promo-banner';
 import { fontDisplay, fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       )}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <div className="relative flex min-h-screen flex-col">
+            <PromoBanner />
             <SiteHeader />
             <main className="flex-1">
               {children}
