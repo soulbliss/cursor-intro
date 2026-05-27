@@ -229,15 +229,9 @@ export function BestPracticesList({ practices }: Props) {
                                             </div>
                                             <div className="text-xs text-muted-foreground">
                                                 {formatDistanceToNow(practice.createdAt, { addSuffix: true })} • {practice.postTitle} • by{' '}
-                                                <a 
-                                                    href={`https://www.reddit.com/user/${practice.postAuthor}`}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="text-primary hover:underline"
-                                                    onClick={(e) => e.stopPropagation()}
-                                                >
+                                                <span className="text-primary">
                                                     {practice.postAuthor}
-                                                </a>
+                                                </span>
                                             </div>
                                         </div>
                                         {practice.source && (

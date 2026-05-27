@@ -258,15 +258,9 @@ export function MistakesList({ mistakes }: Props) {
                                             </div>
                                             <div className="text-xs text-muted-foreground">
                                                 {formatDistanceToNow(mistake.createdAt, { addSuffix: true })} • {mistake.postTitle} • by{' '}
-                                                <a 
-                                                    href={`https://www.reddit.com/user/${mistake.postAuthor}`}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="text-primary hover:underline"
-                                                    onClick={(e) => e.stopPropagation()}
-                                                >
+                                                <span className="text-primary">
                                                     {mistake.postAuthor}
-                                                </a>
+                                                </span>
                                             </div>
                                         </div>
                                         {mistake.source && (

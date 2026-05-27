@@ -476,14 +476,9 @@ export default async function InsightPage({ params }: Props) {
                                                     <div className="flex items-center gap-1 min-w-0 flex-1">
                                                         <span className="truncate">
                                                             {formatDistanceToNow(relatedPost.post.created_utc * 1000, { addSuffix: true })} • by{' '}
-                                                            <a 
-                                                                href={`https://www.reddit.com/user/${relatedPost.post.author}`}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="text-primary hover:underline"
-                                                            >
+                                                            <span className="text-primary">
                                                                 {relatedPost.post.author}
-                                                            </a>
+                                                            </span>
                                                         </span>
                                                     </div>
                                                     <div className="flex items-center gap-1 shrink-0 ml-2">
