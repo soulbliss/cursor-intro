@@ -15,8 +15,29 @@ type Props = {
     components?: TwitterComponents
 }
 
+
+const isEnrichableTweet = (tweet: unknown): tweet is Tweet => {
+    if (!tweet || typeof tweet !== 'object') return false
+    const t = tweet as Record<string, any>
+    if (!t.user || !t.entities) return false
+    const e = t.entities
+    return (
+        Array.isArray(e.hashtags) &&
+        Array.isArray(e.user_mentions) &&
+        Array.isArray(e.urls) &&
+        Array.isArray(e.symbols)
+    )
+}
+
 export const TweetMediaOnly = ({ tweet: t, components }: Props) => {
-    const tweet = enrichTweet(t)
+    let tweet
+    try {
+        if (!isEnrichableTweet(t)) return null
+        tweet = enrichTweet(t)
+    } catch {
+        return null
+    }
+
     return (
         <TweetContainer>
             <TweetHeader tweet={tweet} components={components} />
